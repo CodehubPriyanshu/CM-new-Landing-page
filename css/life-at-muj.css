@@ -120,17 +120,108 @@
 .video-wrapper {
     position: relative;
     width: 100%;
-    height: 320px;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     border-radius: 12px;
     overflow: hidden;
     background: #000;
 }
 
 .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
     object-fit: cover;
+}
+
+/* Responsive adjustments for different screen sizes */
+@media (min-width: 992px) {
+    .video-wrapper {
+        height: 320px;
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .video-wrapper {
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-wrapper {
+        height: 240px;
+    }
+}
+
+@media (max-width: 576px) {
+    .video-wrapper {
+        height: 200px;
+    }
+}
+
+/* Loading state */
+.video-wrapper.loading {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.video-wrapper.loaded {
+    background: #000;
+    animation: none;
+}
+
+/* Error state */
+.video-wrapper.error {
+    background: #ffebee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+}
+
+.video-error-message {
+    color: #c62828;
+    padding: 20px;
+}
+
+.video-error-message .error-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.video-error-message h4 {
+    margin: 10px 0 5px 0;
+    color: #c62828;
+}
+
+.video-error-message p {
+    margin: 5px 0 15px 0;
+    font-size: 14px;
+}
+
+.retry-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .video-overlay {
