@@ -131,12 +131,15 @@ class VideoCarousel {
         wrapper.classList.remove('loading');
         wrapper.classList.add('loaded');
 
-        // Add YouTube video IDs (replace with actual video IDs)
-        const videoIds = ['dQw4w9WgXcQ', 'VIDEO_ID_2', 'VIDEO_ID_3', 'VIDEO_ID_4'];
-        const currentVideoId = videoIds[this.currentIndex] || 'dQw4w9WgXcQ';
-        
-        // Update iframe src with proper parameters
-        iframe.src = `https://www.youtube.com/embed/${currentVideoId}?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1`;
+        // The iframe already has the correct src from HTML, just ensure it's loaded
+        // If iframe already has a src, we don't need to change it
+        if (!iframe.src || iframe.src.includes('about:blank')) {
+            // Get the original src from the data attribute or fallback
+            const originalSrc = iframe.dataset.originalSrc || iframe.src;
+            if (originalSrc) {
+                iframe.src = originalSrc;
+            }
+        }
     }
 
     updateSlidePosition() {
@@ -259,13 +262,20 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.addEventListener('click', () => {
             const iframe = overlay.parentElement.querySelector('iframe');
             if (iframe) {
-                // Play the video inline
+                // Ensure the iframe is loaded and visible
                 const videoSrc = iframe.src;
                 if (!videoSrc.includes('autoplay=1')) {
                     // Add autoplay parameter to start playing
-                    const newSrc = videoSrc.includes('?') ? 
-                        videoSrc.replace(/autoplay=\d/, 'autoplay=1') : 
-                        videoSrc + '&autoplay=1';
+                    let newSrc = videoSrc;
+                    if (newSrc.includes('?')) {
+                        if (newSrc.includes('autoplay=')) {
+                            newSrc = newSrc.replace(/autoplay=\d/, 'autoplay=1');
+                        } else {
+                            newSrc = newSrc + '&autoplay=1';
+                        }
+                    } else {
+                        newSrc = newSrc + '?autoplay=1';
+                    }
                     iframe.src = newSrc;
                 }
                 // Hide overlay when video starts playing

@@ -442,22 +442,43 @@
                 const wrapper = this.closest('.video-wrapper');
                 const iframe = wrapper.querySelector('iframe');
                 if (iframe) {
-                    // Update the iframe src to include autoplay=1, but only on user interaction
-                    let src = iframe.src;
-                    if (src.includes('autoplay=1')) return; // Already has autoplay
+                    // Get the original source from data attribute to avoid duplicate parameters
+                    const slide = wrapper.closest('.video-slide');
+                    let originalSrc = slide.dataset.originalSrc || iframe.src.split('?')[0];
                     
-                    if (src.includes('autoplay=')) {
-                        src = src.replace(/autoplay=[^&]*/, 'autoplay=1');
+                    // Create new URL with proper YouTube parameters for user interaction
+                    let newSrc = originalSrc;
+                    
+                    // Check if URL already has parameters
+                    if (newSrc.includes('?')) {
+                        // If autoplay is already present, just replace it
+                        if (newSrc.includes('autoplay=')) {
+                            newSrc = newSrc.replace(/autoplay=[^&]*/g, 'autoplay=1');
+                        } else {
+                            newSrc += '&autoplay=1';
+                        }
+                        
+                        // Similarly handle mute parameter
+                        if (newSrc.includes('mute=')) {
+                            newSrc = newSrc.replace(/mute=[^&]*/g, 'mute=1');
+                        } else {
+                            newSrc += '&mute=1';
+                        }
                     } else {
-                        src += '&autoplay=1';
+                        // No parameters, add them
+                        newSrc += '?autoplay=1&mute=1';
                     }
                     
-                    // Also add mute=1 to satisfy autoplay policies
-                    if (!src.includes('mute=')) {
-                        src += '&mute=1';
+                    // Add other necessary parameters for proper functionality
+                    if (!newSrc.includes('enablejsapi=')) {
+                        newSrc += '&enablejsapi=1';
+                    }
+                    if (!newSrc.includes('controls=')) {
+                        newSrc += '&controls=1';
                     }
                     
-                    iframe.src = src;
+                    // Update iframe src to trigger video play
+                    iframe.src = newSrc;
                     
                     // Hide overlay when video starts playing
                     this.classList.add('playing');
