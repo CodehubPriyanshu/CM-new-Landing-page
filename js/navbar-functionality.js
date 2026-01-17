@@ -46,65 +46,39 @@ function setupDropdowns() {
 
 // Setup mobile menu functionality
 function setupMobileMenu() {
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const body = document.body;
-    
-    if (mobileBtn && navMenu) {
-        mobileBtn.addEventListener('click', function() {
-            toggleMobileMenu();
-        });
-        
-        // Close mobile menu when clicking nav links
-        const navLinks = navMenu.querySelectorAll('a[href^="#"]');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (navMenu.classList.contains('active')) {
-                    closeMobileMenu();
-                }
-            });
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && 
-                !mobileBtn.contains(e.target) && 
-                navMenu.classList.contains('active')) {
-                closeMobileMenu();
-            }
-        });
-    }
-    
-    // Close mobile menu on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
+    // Mobile sidebar is handled by toggleMobileMenu function
+    // This function is kept for backward compatibility but does nothing
+    console.log('Mobile menu setup - using mobile sidebar system');
 }
 
 function openMobileMenu() {
+    // Use the mobile sidebar system instead
     const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const body = document.body;
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
     
-    navMenu.classList.add('active');
-    body.style.overflow = 'hidden';
-    mobileBtn.setAttribute('aria-expanded', 'true');
-    mobileBtn.classList.add('active');
+    if (mobileBtn && mobileSidebar && sidebarOverlay) {
+        mobileSidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+        mobileBtn.innerHTML = '<i class="fas fa-times"></i>';
+        mobileBtn.setAttribute('aria-expanded', 'true');
+        preventBodyScroll(true);
+    }
 }
 
 function closeMobileMenu() {
+    // Use the mobile sidebar system instead
     const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const body = document.body;
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
     
-    navMenu.classList.remove('active');
-    body.style.overflow = '';
-    body.style.position = '';
-    body.style.width = '';
-    mobileBtn.setAttribute('aria-expanded', 'false');
-    mobileBtn.classList.remove('active');
+    if (mobileBtn && mobileSidebar && sidebarOverlay) {
+        mobileSidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        mobileBtn.setAttribute('aria-expanded', 'false');
+        preventBodyScroll(false);
+    }
 }
 
 // Setup Goal & City selection functionality
@@ -306,7 +280,26 @@ function closeAllDropdowns() {
         button.setAttribute('aria-expanded', 'false');
     });
     
-    // Also close mobile menu if it's open
+    // Also close mobile sidebar if it's open
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if (mobileSidebar && mobileSidebar.classList.contains('active')) {
+        mobileSidebar.classList.remove('active');
+        if (sidebarOverlay) {
+            sidebarOverlay.classList.remove('active');
+        }
+        if (mobileBtn) {
+            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileBtn.setAttribute('aria-expanded', 'false');
+        }
+        // Restore body scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+    }
+    
+    // Also close old mobile menu if it's open
     const navMenu = document.querySelector('.nav-menu');
     if (navMenu && navMenu.classList.contains('active')) {
         navMenu.classList.remove('active');
@@ -483,30 +476,230 @@ function preventBodyScroll(isPrevented) {
 // Handle mobile menu toggle
 function toggleMobileMenu() {
     const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
     
-    if (!mobileBtn || !navMenu) return;
+    if (!mobileBtn || !mobileSidebar || !sidebarOverlay) return;
     
-    const isActive = navMenu.classList.contains('active');
+    const isSidebarActive = mobileSidebar.classList.contains('active');
     
-    if (!isActive) {
-        navMenu.classList.add('active');
+    if (!isSidebarActive) {
+        mobileSidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
         mobileBtn.innerHTML = '<i class="fas fa-times"></i>';
         mobileBtn.setAttribute('aria-expanded', 'true');
         preventBodyScroll(true);
         
-        // Close all dropdowns when mobile menu opens
+        // Close all dropdowns when mobile sidebar opens
         closeAllDropdowns();
     } else {
-        navMenu.classList.remove('active');
+        mobileSidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
         mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
         mobileBtn.setAttribute('aria-expanded', 'false');
         preventBodyScroll(false);
     }
 }
 
+// Close mobile sidebar when back button is clicked
+function setupSidebarBackButton() {
+    const backBtn = document.getElementById('sidebarBackBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (backBtn && mobileSidebar && sidebarOverlay && mobileBtn) {
+        backBtn.addEventListener('click', function() {
+            mobileSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileBtn.setAttribute('aria-expanded', 'false');
+            preventBodyScroll(false);
+        });
+    }
+}
+
+// Close mobile sidebar when overlay is clicked
+function setupSidebarOverlay() {
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (sidebarOverlay && mobileSidebar && mobileBtn) {
+        sidebarOverlay.addEventListener('click', function() {
+            mobileSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileBtn.setAttribute('aria-expanded', 'false');
+            preventBodyScroll(false);
+        });
+    }
+}
+
+// Set up category item click handlers
+function setupCategoryItems() {
+    const categoryItems = document.querySelectorAll('.category-item');
+    
+    categoryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const categoryName = this.querySelector('span').textContent;
+            console.log(`Category selected: ${categoryName}`);
+            
+            // Here you can implement navigation or show details for the selected category
+            // For now, we'll just log the selection
+            alert(`You selected: ${categoryName}\nThis would navigate to the ${categoryName} category page.`);
+            
+            // Optionally close the sidebar after selection
+            // closeMobileSidebar();
+        });
+    });
+}
+
+// Set up quick action card click handlers
+function setupQuickActionCards() {
+    const quickCards = document.querySelectorAll('.quick-card');
+    
+    quickCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const cardText = this.querySelector('span').textContent;
+            console.log(`Quick action selected: ${cardText}`);
+            
+            alert(`You selected: ${cardText}\nThis would open the ${cardText} feature.`);
+        });
+    });
+}
+
+// Set up career card click handlers
+function setupCareerCards() {
+    const careerCards = document.querySelectorAll('.career-card');
+    
+    careerCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const cardText = this.querySelector('span').textContent;
+            console.log(`Career card selected: ${cardText}`);
+            
+            alert(`You selected: ${cardText}\nThis would open the ${cardText} feature.`);
+        });
+    });
+}
+
+// Set up popular links click handlers
+function setupPopularLinks() {
+    const popularLinks = document.querySelectorAll('.popular-links-list a');
+    
+    popularLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const linkText = this.querySelector('span').textContent;
+            console.log(`Popular link selected: ${linkText}`);
+            
+            alert(`You selected: ${linkText}\nThis would navigate to the ${linkText} page.`);
+        });
+    });
+}
+
+// Set up study abroad expandable rows
+function setupStudyAbroadRows() {
+    const expandableRows = document.querySelectorAll('.expandable-row');
+    
+    expandableRows.forEach(row => {
+        row.addEventListener('click', function() {
+            const rowText = this.querySelector('span').textContent;
+            console.log(`Study abroad row selected: ${rowText}`);
+            
+            // Toggle expanded state
+            this.classList.toggle('expanded');
+            
+            // Change the plus/minus icon
+            const icon = this.querySelector('i');
+            if (this.classList.contains('expanded')) {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            } else {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+            }
+            
+            alert(`You selected: ${rowText}\nThis would show more details about ${rowText}.`);
+        });
+    });
+}
+
+// Set up goal input click handler
+function setupGoalInput() {
+    const goalInput = document.querySelector('.goal-input-wrapper input');
+    const editIcon = document.querySelector('.goal-input-wrapper .edit-icon');
+    
+    if (goalInput) {
+        goalInput.addEventListener('click', function() {
+            console.log('Goal input clicked');
+            alert('This would open the goal selection modal.');
+        });
+    }
+    
+    if (editIcon) {
+        editIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('Edit icon clicked');
+            alert('This would open the goal editing interface.');
+        });
+    }
+}
+
+// Set up 'All Courses' link functionality
+function setupAllCoursesLink() {
+    const allCoursesLink = document.querySelector('.all-courses-link');
+    
+    if (allCoursesLink) {
+        allCoursesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('All Courses link clicked');
+            
+            alert('This would show all available courses.\nNavigating to the complete course catalog.');
+            
+            // Optionally close the sidebar and navigate
+            // closeMobileSidebar();
+            // window.location.href = '/courses'; // Replace with actual URL
+        });
+    }
+}
+
+// Helper function to close mobile sidebar
+function closeMobileSidebar() {
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (mobileSidebar) {
+        mobileSidebar.classList.remove('active');
+    }
+    if (sidebarOverlay) {
+        sidebarOverlay.classList.remove('active');
+    }
+    if (mobileBtn) {
+        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        mobileBtn.setAttribute('aria-expanded', 'false');
+    }
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+}
+
 // Initialize search functionality
 setupSearch();
+
+// Setup mobile sidebar functionality
+setupSidebarBackButton();
+setupSidebarOverlay();
+setupCategoryItems();
+setupQuickActionCards();
+setupCareerCards();
+setupPopularLinks();
+setupStudyAbroadRows();
+setupGoalInput();
+setupAllCoursesLink();
 
 // Export functions for external use
 window.NavbarFunctions = {

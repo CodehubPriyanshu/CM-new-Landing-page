@@ -12,6 +12,12 @@
     margin-bottom: 40px;
 }
 
+.footer-links-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
 .footer-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -21,6 +27,11 @@
 /* Mobile layout for footer */
 @media (max-width: 768px) {
     .footer-content {
+        gap: 25px;
+    }
+    
+    .footer-links-row {
+        grid-template-columns: repeat(2, 1fr);
         gap: 25px;
     }
     
@@ -41,10 +52,7 @@
         margin-bottom: 10px;
     }
     
-    /* Student Helpdesk full width */
-    .student-helpdesk {
-        grid-column: 1 / -1;
-    }
+    /* Remove full-width rule for student-helpdesk */
     
     /* Contact section styling */
     .contact-section {
@@ -86,6 +94,11 @@
 
 @media (max-width: 480px) {
     .footer-content {
+        gap: 20px;
+    }
+    
+    .footer-links-row {
+        grid-template-columns: 1fr;
         gap: 20px;
     }
     

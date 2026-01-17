@@ -422,6 +422,11 @@
         left: 0;
     }
     
+    /* Hide old mobile menu when new sidebar is active */
+    .mobile-sidebar.active ~ .nav-container .nav-menu {
+        left: -100%;
+    }
+    
     .nav-links {
         flex-direction: column;
         width: 100%;

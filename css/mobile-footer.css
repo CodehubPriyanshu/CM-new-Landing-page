@@ -243,7 +243,8 @@
         padding: 0 12px;
     }
     
-    /* Ensure Quick Links and Top Exams consistency */
+    /* Ensure all footer sections consistency */
+    .footer-links-row .footer-section,
     .footer-row .footer-section {
         text-align: left;
         padding: 18px 12px;
@@ -257,6 +258,7 @@
         margin-bottom: 0;
     }
     
+    .footer-links-row .footer-section h3,
     .footer-row .footer-section h3 {
         text-align: center;
         color: var(--primary-color);
@@ -264,6 +266,7 @@
         position: relative;
     }
     
+    .footer-links-row .footer-section h3::after,
     .footer-row .footer-section h3::after {
         content: '';
         position: absolute;
@@ -357,17 +360,20 @@
         font-size: 13px;
     }
     
-    /* Maintain consistency for Quick Links and Top Exams */
+    /* Maintain consistency for all footer sections */
+    .footer-links-row .footer-section,
     .footer-row .footer-section {
         padding: 15px 10px;
         margin-bottom: 10px;
     }
     
+    .footer-links-row .footer-section h3,
     .footer-row .footer-section h3 {
         font-size: 16px;
         margin-bottom: 15px;
     }
     
+    .footer-links-row .footer-section h3::after,
     .footer-row .footer-section h3::after {
         width: 40px;
         height: 2px;

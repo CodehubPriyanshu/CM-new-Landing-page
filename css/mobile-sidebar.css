@@ -1,0 +1,377 @@
+/* Mobile Sidebar Styles */
+
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background: white;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-sidebar.active {
+    left: 0;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+.mobile-sidebar-header h2 {
+    flex: 1;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sidebar-back-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-back-btn:hover {
+    background: #f5f5f5;
+}
+
+.sidebar-header-actions {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.write-review-link {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.upto-cta {
+    color: #ff6b35;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.mobile-sidebar-content {
+    padding: 20px 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.select-goal-section {
+    margin-bottom: 25px;
+}
+
+.select-goal-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #333;
+}
+
+.goal-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+
+.goal-input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+    color: #666;
+}
+
+.edit-icon {
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.browse-categories-section {
+    margin-bottom: 25px;
+}
+
+.browse-categories-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #333;
+}
+
+.search-input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-input-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.categories-list {
+    margin-bottom: 15px;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.category-item:last-child {
+    border-bottom: none;
+}
+
+.category-item span {
+    font-size: 15px;
+    color: #333;
+}
+
+.all-courses-link {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.helpful-career-section {
+    margin-bottom: 25px;
+}
+
+.helpful-career-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.career-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.career-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #007bff;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.career-icon i {
+    color: white;
+    font-size: 16px;
+}
+
+.career-card span {
+    font-size: 13px;
+    color: #333;
+    margin-top: 5px;
+}
+
+.quick-action-section {
+    margin-bottom: 25px;
+}
+
+.quick-action-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.quick-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.quick-card i {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 8px;
+}
+
+.quick-card span {
+    font-size: 13px;
+    color: #333;
+}
+
+.study-abroad-section {
+    margin-bottom: 25px;
+}
+
+.expandable-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+.expandable-row:last-child {
+    border-bottom: none;
+}
+
+.expandable-row span {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+.popular-links-section {
+    margin-bottom: 20px;
+}
+
+.popular-links-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.popular-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popular-links-list li {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.popular-links-list li:last-child {
+    border-bottom: none;
+}
+
+.popular-links-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.popular-links-list a span {
+    font-size: 14px;
+}
+
+.popular-links-list a i {
+    color: #ccc;
+    font-size: 12px;
+}
+
+.popular-links-list a:hover {
+    color: #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .mobile-sidebar {
+        width: 100%;
+    }
+    
+    .mobile-sidebar-header {
+        padding: 15px;
+    }
+    
+    .mobile-sidebar-content {
+        padding: 15px;
+    }
+    
+    .career-grid,
+    .quick-action-cards {
+        grid-template-columns: 1fr;
+    }
+}
