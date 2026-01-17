@@ -63,11 +63,11 @@
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 5px;
-    max-height: 85vh;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: hidden;
     /* Remove all scroll animations */
     scroll-behavior: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
 }
 
 .explore-dropdown.active .explore-module {
@@ -220,8 +220,8 @@
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 5px;
-    max-height: 85vh;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: hidden;
     /* Remove all animations */
     scroll-behavior: auto;
 }
@@ -596,7 +596,7 @@
         height: calc(100vh - 70px);
         border-radius: 0;
         transform: translateX(100%);
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     
     .explore-dropdown.active .explore-module {
@@ -617,7 +617,7 @@
         height: calc(100vh - 70px);
         border-radius: 0;
         transform: translateX(100%);
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     
     .profile-dropdown.active .profile-module {

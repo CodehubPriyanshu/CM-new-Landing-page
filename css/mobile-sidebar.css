@@ -11,9 +11,11 @@
     z-index: 1001;
     transition: left 0.3s ease;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
+    /* Ensure no layout shifts */
+    will-change: left;
 }
 
 .mobile-sidebar.active {
@@ -54,7 +56,9 @@
     margin: 0;
     font-size: 18px;
     font-weight: 600;
-    text-align: center;
+    /* Changed to left alignment as per requirements */
+    text-align: left;
+    margin-left: 10px;
 }
 
 .sidebar-back-btn {
@@ -80,6 +84,8 @@
     display: flex;
     gap: 15px;
     margin-left: auto;
+    /* Ensure touch-friendly sizing */
+    align-items: center;
 }
 
 .write-review-link {
@@ -99,7 +105,7 @@
 .mobile-sidebar-content {
     padding: 20px 15px;
     flex: 1;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .select-goal-section {
@@ -121,6 +127,8 @@
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 12px 15px;
+    /* Ensure touch-friendly size */
+    min-height: 48px;
 }
 
 .goal-input-wrapper input {
@@ -181,6 +189,13 @@
     justify-content: space-between;
     padding: 12px 0;
     border-bottom: 1px solid #f0f0f0;
+    /* Touch-friendly sizing */
+    min-height: 48px;
+    cursor: pointer;
+}
+
+.category-item:hover {
+    background-color: #f8f9fa;
 }
 
 .category-item:last-child {
@@ -229,6 +244,13 @@
     border-radius: 8px;
     text-align: center;
     cursor: pointer;
+    /* Touch-friendly sizing */
+    min-height: 80px;
+    transition: background-color 0.2s ease;
+}
+
+.career-card:hover {
+    background-color: #e9ecef;
 }
 
 .career-icon {
@@ -273,6 +295,13 @@
     border-radius: 8px;
     text-align: center;
     cursor: pointer;
+    /* Touch-friendly sizing */
+    min-height: 80px;
+    transition: background-color 0.2s ease;
+}
+
+.quick-card:hover {
+    background-color: #e9ecef;
 }
 
 .quick-card i {
@@ -297,6 +326,12 @@
     padding: 15px 0;
     border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
+    /* Touch-friendly sizing */
+    min-height: 48px;
+}
+
+.expandable-row:hover {
+    background-color: #f8f9fa;
 }
 
 .expandable-row:last-child {
@@ -341,6 +376,9 @@
     padding: 12px 0;
     text-decoration: none;
     color: #333;
+    /* Touch-friendly sizing */
+    min-height: 48px;
+    transition: color 0.2s ease;
 }
 
 .popular-links-list a span {

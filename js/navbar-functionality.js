@@ -492,6 +492,12 @@ function toggleMobileMenu() {
         
         // Close all dropdowns when mobile sidebar opens
         closeAllDropdowns();
+        
+        // Ensure proper focus management
+        const firstFocusableElement = mobileSidebar.querySelector('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (firstFocusableElement) {
+            firstFocusableElement.focus();
+        }
     } else {
         mobileSidebar.classList.remove('active');
         sidebarOverlay.classList.remove('active');
@@ -620,6 +626,8 @@ function setupStudyAbroadRows() {
                 icon.classList.add('fa-plus');
             }
             
+            // In a real implementation, you would show/hide additional content
+            // For now, just show an alert
             alert(`You selected: ${rowText}\nThis would show more details about ${rowText}.`);
         });
     });
@@ -700,6 +708,12 @@ setupPopularLinks();
 setupStudyAbroadRows();
 setupGoalInput();
 setupAllCoursesLink();
+
+// Connect hamburger menu button to toggle function
+const hamburgerBtn = document.querySelector('.mobile-menu-btn');
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+}
 
 // Export functions for external use
 window.NavbarFunctions = {
