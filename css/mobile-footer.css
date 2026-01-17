@@ -1,0 +1,488 @@
+/* Mobile Footer Improvements - Clean, Readable, Visually Balanced */
+
+/* Base footer mobile enhancements */
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 0 25px;
+    }
+    
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        margin-bottom: 30px;
+    }
+    
+    /* Brand Section */
+    .brand-section {
+        text-align: center;
+        padding-bottom: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        margin-bottom: 10px;
+    }
+    
+    .brand-section .logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .brand-section .logo-icon {
+        font-size: 28px;
+    }
+    
+    .brand-section h2 {
+        font-size: 24px;
+        margin: 0;
+        line-height: 1.2;
+    }
+    
+    .brand-section p {
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 16px;
+        margin-top: 0;
+    }
+    
+    .social-links a {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.15);
+        transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+        background: var(--primary-color);
+        transform: translateY(-5px) scale(1.1);
+    }
+    
+    /* All other sections */
+    .footer-section:not(:first-child) {
+        text-align: left;
+        padding: 0 15px;
+    }
+    
+    .footer-section h3 {
+        font-size: 19px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        font-weight: 600;
+        position: relative;
+        padding-bottom: 8px;
+    }
+    
+    .footer-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 2px;
+    }
+    
+    .footer-section p {
+        font-size: 15px;
+        margin-bottom: 18px;
+        line-height: 1.7;
+    }
+    
+    .footer-section ul {
+        padding-left: 0;
+    }
+    
+    .footer-section ul li {
+        margin-bottom: 14px;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .footer-section ul li:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .footer-section ul li a {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .footer-section ul li a:hover {
+        color: white;
+        padding-left: 12px;
+        transform: translateX(5px);
+    }
+    
+    .footer-section ul li a::before {
+        content: '→';
+        position: absolute;
+        left: -15px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        color: var(--primary-color);
+    }
+    
+    .footer-section ul li a:hover::before {
+        opacity: 1;
+        left: -20px;
+    }
+    
+    /* Contact Info Section */
+    .contact-section {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 25px 20px;
+        border-radius: 12px;
+        margin-top: 10px;
+        text-align: left;
+    }
+    
+    .contact-section h3 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    
+    .contact-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .contact-section p {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 18px;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    
+    .contact-section p i {
+        min-width: 20px;
+        color: var(--primary-color);
+        font-size: 16px;
+        margin-top: 3px;
+    }
+    
+    .contact-section a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .contact-section a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+    }
+    
+    /* Footer Bottom */
+    .footer-bottom {
+        padding-top: 25px;
+        margin-top: 20px;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+}
+
+/* Small Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    .footer {
+        padding: 35px 0 20px;
+    }
+    
+    .footer-content {
+        gap: 30px;
+    }
+    
+    /* Brand Section */
+    .brand-section {
+        padding-bottom: 20px;
+        margin-bottom: 5px;
+    }
+    
+    .brand-section .logo-icon {
+        font-size: 24px;
+    }
+    
+    .brand-section h2 {
+        font-size: 22px;
+    }
+    
+    .brand-section p {
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+    
+    .social-links {
+        gap: 14px;
+    }
+    
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    /* Other Sections */
+    .footer-section:not(:first-child) {
+        padding: 0 12px;
+    }
+    
+    /* Ensure Quick Links and Top Exams consistency */
+    .footer-row .footer-section {
+        text-align: left;
+        padding: 18px 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        margin-bottom: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-row .footer-section:last-child {
+        margin-bottom: 0;
+    }
+    
+    .footer-row .footer-section h3 {
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 18px;
+        position: relative;
+    }
+    
+    .footer-row .footer-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 45px;
+        height: 2px;
+        background: var(--primary-color);
+        border-radius: 1px;
+    }
+    
+    .footer-section h3 {
+        font-size: 17px;
+        margin-bottom: 18px;
+    }
+    
+    .footer-section p {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .footer-section ul li {
+        margin-bottom: 12px;
+        padding: 6px 0;
+    }
+    
+    .footer-section ul li a {
+        font-size: 14px;
+        padding: 4px 0;
+    }
+    
+    .footer-section ul li a:hover {
+        padding-left: 10px;
+    }
+    
+    /* Contact Info */
+    .footer-section:last-child {
+        padding: 20px 15px;
+        margin-top: 5px;
+    }
+    
+    .footer-section:last-child h3 {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-section:last-child p {
+        font-size: 14px;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    
+    .footer-section:last-child p i {
+        font-size: 15px;
+        min-width: 18px;
+    }
+    
+    /* Make contact links more prominent on mobile */
+    .footer-section:last-child a[href^="tel"],
+    .footer-section:last-child a[href^="mailto"] {
+        color: var(--primary-color);
+        font-weight: 500;
+        text-decoration: underline;
+    }
+    
+    .footer-section:last-child a[href^="tel"]:hover,
+    .footer-section:last-child a[href^="mailto"]:hover {
+        color: white;
+        text-decoration: none;
+    }
+    
+    /* Footer Bottom */
+    .footer-bottom {
+        padding-top: 20px;
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Devices (375px and below) */
+@media (max-width: 375px) {
+    .brand-section .logo-icon {
+        font-size: 22px;
+    }
+    
+    .brand-section h2 {
+        font-size: 20px;
+    }
+    
+    .brand-section p {
+        font-size: 13px;
+    }
+    
+    /* Maintain consistency for Quick Links and Top Exams */
+    .footer-row .footer-section {
+        padding: 15px 10px;
+        margin-bottom: 10px;
+    }
+    
+    .footer-row .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-row .footer-section h3::after {
+        width: 40px;
+        height: 2px;
+    }
+    
+    .social-links a {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+    
+    .footer-section h3 {
+        font-size: 16px;
+    }
+    
+    .footer-section ul li a {
+        font-size: 13px;
+    }
+    
+    .footer-section:last-child p {
+        font-size: 13px;
+    }
+    
+    .footer-bottom {
+        font-size: 11px;
+    }
+}
+
+/* Enhanced Back-to-Top Button Positioning for Mobile */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        right: 20px !important;
+        bottom: 80px !important;
+        width: 50px !important;
+        height: 50px !important;
+        z-index: 1000 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-to-top {
+        right: 15px !important;
+        bottom: 70px !important;
+        width: 45px !important;
+        height: 45px !important;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .footer-section ul li a {
+        padding: 12px 0;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .social-links a {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .footer-section:last-child a[href^="tel"],
+    .footer-section:last-child a[href^="mailto"] {
+        padding: 12px 0;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+/* Prevent text selection issues */
+.footer-section {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.footer-section a {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+    -webkit-touch-callout: none;
+}
+
+/* Prevent footer overlap with system UI */
+@media (max-width: 768px) {
+    .footer {
+        padding-bottom: calc(25px + env(safe-area-inset-bottom));
+    }
+    
+    .footer-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Improved accessibility for mobile */
+@media (max-width: 768px) {
+    .footer-section h3 {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .social-links a {
+        -webkit-tap-highlight-color: rgba(255, 109, 0, 0.3);
+    }
+}
+
+/* Smooth transitions for better UX */
+@media (max-width: 768px) {
+    .footer-section,
+    .footer-section h3,
+    .footer-section p,
+    .footer-section ul li a {
+        transition: all 0.2s ease;
+    }
+}

@@ -6,21 +6,52 @@
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 30px;
     margin-bottom: 40px;
+}
+
+.footer-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
 /* Mobile layout for footer */
 @media (max-width: 768px) {
     .footer-content {
+        gap: 25px;
+    }
+    
+    .footer-row {
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
     }
     
     .footer-section {
         text-align: center;
+    }
+    
+    /* Brand section specific styling */
+    .brand-section {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 10px;
+    }
+    
+    /* Student Helpdesk full width */
+    .student-helpdesk {
+        grid-column: 1 / -1;
+    }
+    
+    /* Contact section styling */
+    .contact-section {
+        text-align: left;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        border-radius: 10px;
     }
     
     .footer-section h3 {
@@ -55,8 +86,58 @@
 
 @media (max-width: 480px) {
     .footer-content {
+        gap: 20px;
+    }
+    
+    .footer-row {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    /* Ensure Quick Links and Top Exams have identical styling */
+    .footer-row .footer-section {
+        text-align: left;
+        padding: 20px 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-row .footer-section:last-child {
+        margin-bottom: 0;
+    }
+    
+    .footer-row .footer-section h3 {
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .footer-row .footer-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 2px;
+        background: var(--primary-color);
+        border-radius: 1px;
+    }
+    
+    .brand-section {
+        padding-bottom: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .student-helpdesk {
+        grid-column: auto;
+    }
+    
+    .contact-section {
+        padding: 15px;
     }
     
     .footer-section h3 {
