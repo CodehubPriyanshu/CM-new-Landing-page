@@ -1,0 +1,598 @@
+/* carousel.css - College image carousel and statistics styles */
+
+/* Hero Image Carousel */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.carousel-item {
+    flex: 0 0 20%;
+    height: 100%;
+    position: relative;
+}
+
+.college-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.college-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 10s ease;
+}
+
+.carousel-item.active .college-image img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: 1;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    font-size: 18px;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.indicator.active {
+    background: white;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.indicator:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* College Name Slider */
+.college-name-slider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 20px 30px;
+    z-index: 5;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.college-names {
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.college-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding-right: 20px;
+}
+
+.college-name.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.college-name::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* Hero Statistics Section */
+.hero-stats {
+    position: relative;
+    margin-top: 30px;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.stats-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 0;
+    width: auto;
+    max-width: 600px;
+    justify-content: flex-start;
+}
+
+@media (min-width: 993px) {
+    .stats-cards {
+        flex-wrap: nowrap;
+    }
+    
+    .stat-card {
+        height: 160px;
+        flex: 1;
+        min-width: 150px;
+    }
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px; /* Reduced from 15px */
+    padding: 20px; /* Reduced from 24px (25% reduction) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Reduced from 12px */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 150px; /* Reduced from 160px (25% reduction) */
+    flex: 1;
+    min-width: 120px; /* Reduced from 170px (29% reduction) */
+    text-align: center;
+    max-width: 140px; /* Added to control width */
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(41, 98, 255, 0.15);
+    border-color: var(--primary-light);
+}
+
+.stat-content h3 {
+    font-size: 28px; /* Reduced from 28px (25% reduction) */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 6px 0 !important; /* Reduced from 8px */
+    line-height: 1.2;
+}
+
+.stat-content p {
+    font-size: 11px; /* Reduced from 14px (21% reduction) */
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.4; /* Slightly reduced from 1.5 */
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.stat-card .stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.stat-content h3 {
+    font-size: 21px; /* Reduced from 28px (25% reduction) */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 6px 0 !important; /* Reduced from 8px */
+    line-height: 1.2;
+}
+
+.stat-content p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.5;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Design for Carousel and Stats */
+@media (max-width: 1200px) {
+    .hero-image {
+        height: 380px;
+    }
+    
+    .stat-card {
+        padding: 14px; /* Reduced from 15px */
+        height: 110px; /* Reduced from ~120px */
+        min-width: 110px; /* Reduced */
+    }
+    
+    .stat-content h3 {
+        font-size: 20px; /* Reduced from 26px */
+    }
+    
+    .stat-content p {
+        font-size: 10px; /* Reduced from ~11px */
+    }
+}
+
+@media (min-width: 993px) {
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .stat-card {
+        height: 120px; /* Reduced from 160px (25% reduction) */
+        min-width: 120px; /* Reduced from default */
+        max-width: 140px; /* Added constraint */
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-cards {
+        flex-direction: column;
+    }
+    
+    .stat-card {
+        height: auto;
+        min-height: 120px; /* Reduced from 160px */
+        width: 100%;
+        padding: 18px; /* Reduced padding */
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .hero-image {
+        height: 350px;
+        order: 1;
+    }
+    
+    .hero-content {
+        order: 2;
+    }
+    
+    .hero-stats {
+        margin-top: 20px;
+        order: 3;
+    }
+    
+    .college-name {
+        font-size: 16px;
+    }
+    
+    .stats-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: auto;
+        padding: 24px;
+        width: 100%;
+    }
+    
+    .stat-content h3 {
+        font-size: 26px;
+    }
+    
+    .stat-content {
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 300px;
+        border-radius: 12px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .prev-btn {
+        left: 15px;
+    }
+    
+    .next-btn {
+        right: 15px;
+    }
+    
+    .college-name-slider {
+        padding: 15px 20px;
+        min-height: 70px;
+    }
+    
+    .college-name {
+        font-size: 15px;
+    }
+    
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+        min-height: auto;
+    }
+    
+    .stat-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+    
+    .stat-content h3 {
+        font-size: 24px;
+    }
+    
+    .stat-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        height: 250px;
+    }
+    
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .college-name-slider {
+        padding: 12px 15px;
+        min-height: 60px;
+    }
+    
+    .college-name {
+        font-size: 14px;
+        padding-right: 10px;
+    }
+    
+    .stat-card {
+        padding: 18px;
+        gap: 12px;
+    }
+    
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+        margin: 0 auto 12px auto;
+    }
+    
+    .stat-content h3 {
+        font-size: 22px;
+    }
+    
+    .stat-content p {
+        font-size: 13px;
+    }
+}
+
+/* Carousel Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-item {
+    animation: slideIn 0.8s ease-out;
+}
+
+.stat-card.compact {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Loading state for images */
+.college-image img {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.college-image img.loaded {
+    opacity: 1;
+}
+
+/* Auto-slide progress indicator */
+.carousel-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.carousel-progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    width: 0%;
+    transition: width 5s linear;
+}
+
+.carousel-item.active .carousel-progress-bar {
+    width: 100%;
+    animation: progressBar 5s linear;
+}
+
+@keyframes progressBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Touch support for mobile */
+.carousel-container {
+    touch-action: pan-y;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .carousel-btn {
+        border: 2px solid var(--text-dark);
+    }
+    
+    .indicator {
+        border: 2px solid white;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-slide,
+    .college-image img,
+    .stat-card.compact,
+    .college-name {
+        transition: none;
+        animation: none;
+    }
+}

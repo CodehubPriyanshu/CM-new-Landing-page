@@ -1,0 +1,660 @@
+/* modules.css - Clean, modern dropdown modules for Explore and Profile */
+
+/* Global Module Styles */
+.explore-dropdown, .profile-dropdown {
+    position: relative;
+}
+
+.explore-btn, .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1002;
+}
+
+.explore-btn:hover, .profile-btn:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(41, 98, 255, 0.15);
+}
+
+.explore-btn.active, .profile-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.dropdown-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.explore-btn.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Explore Module Styles - Improved Layout and No Animations */
+.explore-module {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    width: 1600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+    transition: none;
+    z-index: 1000;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    max-height: 85vh;
+    overflow-y: auto;
+    /* Remove all scroll animations */
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.explore-dropdown.active .explore-module {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.explore-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 40px 60px;
+    background: white;
+    /* Ensure proper scrollbar containment */
+    overflow: hidden;
+}
+
+.explore-column h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dark);
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+    position: relative;
+}
+
+.explore-column h4 i {
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.discount-tag {
+    background: #4CAF50;
+    color: white;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.explore-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.explore-column ul li {
+    margin-bottom: 8px;
+}
+
+.explore-column ul li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: none;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.explore-column ul li a:hover {
+    background: var(--bg-light);
+    color: var(--primary-color);
+    padding-left: 15px;
+    transform: none;
+}
+
+.explore-column ul li a i {
+    color: var(--text-light);
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
+}
+
+.explore-column ul li a:hover i {
+    color: var(--primary-color);
+}
+
+/* Explore Promotional Card */
+.explore-promo-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 12px 12px;
+}
+
+.promo-content {
+    flex: 1;
+}
+
+.promo-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: var(--text-dark);
+}
+
+.star-rating {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 12px;
+}
+
+.star-rating i {
+    color: #FFD700;
+    font-size: 16px;
+}
+
+.promo-content p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.promo-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Profile Module Styles - Improved Layout and No Animations */
+.profile-module {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+    transition: none;
+    z-index: 1000;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    max-height: 85vh;
+    overflow-y: auto;
+    /* Remove all animations */
+    scroll-behavior: auto;
+}
+
+.profile-dropdown.active .profile-module {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.profile-content {
+    padding: 35px;
+    /* Ensure proper spacing */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Greeting Section */
+.greeting-section {
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+}
+
+.greeting-section h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.greeting-section p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Goal Selection */
+.goal-section {
+    margin-bottom: 25px;
+}
+
+.goal-section label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.goal-section label i {
+    color: var(--primary-color);
+}
+
+.goal-input-wrapper {
+    position: relative;
+}
+
+.goal-input-wrapper input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.goal-input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(41, 98, 255, 0.1);
+}
+
+.edit-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.edit-icon:hover {
+    color: var(--primary-color);
+}
+
+/* Auth Section */
+.auth-section {
+    margin-bottom: 25px;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 14px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Profile Promotional Card */
+.profile-promo-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.profile-promo-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.profile-promo-card .star-rating {
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.profile-promo-card p {
+    margin: 0 0 15px 0;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* App Download Section */
+.app-section {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.app-section h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.app-section h4 i {
+    color: var(--primary-color);
+}
+
+.app-section p {
+    margin: 0 0 15px 0;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.app-download-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.app-store-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background: var(--text-dark);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.app-store-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.app-store-btn:first-child {
+    background: #4285F4;
+}
+
+.app-store-btn:last-child {
+    background: #000000;
+}
+
+.store-icon i {
+    font-size: 24px;
+}
+
+.store-text {
+    text-align: left;
+}
+
+.store-text small {
+    display: block;
+    font-size: 10px;
+    opacity: 0.8;
+    margin-bottom: 2px;
+}
+
+.store-text strong {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.qr-code-section img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.qr-code-section p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* Social Media Section */
+.social-section {
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.social-icon.instagram:hover {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.social-icon.facebook:hover {
+    background: #3b5998;
+}
+
+.social-icon.linkedin:hover {
+    background: #0077b5;
+}
+
+.social-icon.youtube:hover {
+    background: #ff0000;
+}
+
+/* No Animation States - Instant Display */
+.dropdown.opening .explore-module,
+.dropdown.opening .profile-module,
+.dropdown.closing .explore-module,
+.dropdown.closing .profile-module {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Flipped positioning when modules appear above buttons */
+.explore-module.flipped,
+.profile-module.flipped {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1400px) {
+    .explore-module {
+        width: 95vw;
+        max-width: 1300px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 12px;
+    }
+    
+    .explore-dropdown.active .explore-module {
+        transform: translateX(-50%);
+    }
+    
+    .explore-content {
+        padding: 40px;
+        gap: 40px;
+        border-radius: 12px 12px 0 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .explore-module {
+        width: 95vw;
+        max-width: 1100px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 12px;
+    }
+    
+    .explore-dropdown.active .explore-module {
+        transform: translateX(-50%);
+    }
+    
+    .explore-content {
+        padding: 35px;
+        gap: 35px;
+        border-radius: 12px 12px 0 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .explore-module {
+        width: 95vw;
+        max-width: 900px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 12px;
+    }
+    
+    .explore-dropdown.active .explore-module {
+        transform: translateX(-50%);
+    }
+    
+    .explore-content {
+        gap: 30px;
+        padding: 30px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .profile-module {
+        width: 90vw;
+        max-width: 500px;
+        border-radius: 12px;
+    }
+    
+    .profile-content {
+        padding: 30px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .explore-module {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        border-radius: 0;
+        transform: translateX(100%);
+        overflow-y: auto;
+    }
+    
+    .explore-dropdown.active .explore-module {
+        transform: translateX(0);
+    }
+    
+    .explore-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .profile-module {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        border-radius: 0;
+        transform: translateX(100%);
+        overflow-y: auto;
+    }
+    
+    .profile-dropdown.active .profile-module {
+        transform: translateX(0);
+    }
+    
+    .profile-content {
+        padding: 20px;
+    }
+    
+    .app-download-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .app-store-btn {
+        width: 200px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .explore-module, .profile-module {
+        padding-top: 50px;
+    }
+    
+    .explore-content, .profile-content {
+        padding: 15px;
+    }
+    
+    .discount-tag {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+    
+    .app-store-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}

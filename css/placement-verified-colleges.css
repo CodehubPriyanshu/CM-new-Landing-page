@@ -1,0 +1,67 @@
+/* placement-verified-colleges.css - Placement Verified Colleges section styles */
+.placement-verified-colleges {
+    padding: 80px 0;
+    background: var(--bg-white);
+}
+
+.placement-verified-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.college-badge.verified {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    z-index: 3;
+    padding: 6px 14px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Specific styles for placement verified colleges card */
+.placement-verified-colleges .college-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* General college card styles */
+.college-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.placement-verified-colleges .college-image {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+    margin: -25px -25px 15px -25px;
+    width: calc(100% + 50px);
+}
+
+.placement-verified-colleges .college-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+    display: block;
+}
+
+.college-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}

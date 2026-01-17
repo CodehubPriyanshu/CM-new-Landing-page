@@ -1,0 +1,605 @@
+/* life-at-muj.css - LIFE AT MUJ section styles */
+.life-at-muj-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.life-at-muj-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(41, 98, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 176, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.life-at-muj-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Left Side: Heading */
+.muj-heading {
+    padding-right: 30px;
+}
+
+.muj-heading .section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.muj-heading .section-subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.muj-heading .btn-outline {
+    padding: 14px 28px;
+    font-weight: 600;
+    border-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.muj-heading .btn-outline:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(41, 98, 255, 0.15);
+}
+
+.student-reviews-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.student-reviews-link:hover {
+    gap: 12px;
+    color: var(--primary-dark);
+}
+
+/* Right Side: Video Carousel */
+.video-carousel-container {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.video-carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+}
+
+/* Video Wrapper */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.video-overlay:hover {
+    opacity: 0.9;
+}
+
+.video-overlay.playing {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.play-btn {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+/* Video Caption */
+.video-caption {
+    padding: 0 10px;
+}
+
+.video-caption h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--text-dark);
+}
+
+.video-caption p {
+    font-size: 15px;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Carousel Navigation */
+.video-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    font-size: 18px;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0.9;
+}
+
+.video-carousel-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.video-carousel-btn.prev-btn {
+    left: 15px;
+}
+
+.video-carousel-btn.next-btn {
+    right: 15px;
+}
+
+/* Carousel Indicators */
+.video-carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+}
+
+.video-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.video-indicator.active {
+    background: white;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.video-indicator:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .life-at-muj-content {
+        gap: 50px;
+    }
+
+    .video-carousel {
+        height: 380px;
+    }
+
+    .video-wrapper {
+        height: 300px;
+    }
+
+    .muj-heading .section-title {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 992px) {
+    .life-at-muj-section {
+        padding: 60px 0;
+    }
+
+    .life-at-muj-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .muj-heading {
+        padding-right: 0;
+    }
+
+    .muj-heading .section-title {
+        font-size: 36px;
+    }
+
+    .muj-heading .section-subtitle {
+        font-size: 17px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .video-carousel {
+        height: 400px;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .video-wrapper {
+        height: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .life-at-muj-section {
+        padding: 50px 0;
+    }
+
+    .muj-heading .section-title {
+        font-size: 32px;
+    }
+
+    .muj-heading .section-subtitle {
+        font-size: 16px;
+    }
+
+    .video-carousel-container {
+        padding: 20px;
+    }
+
+    .video-carousel {
+        height: 350px;
+    }
+
+    .video-wrapper {
+        height: 280px;
+    }
+
+    .play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .video-caption h4 {
+        font-size: 18px;
+    }
+
+    .video-caption p {
+        font-size: 14px;
+    }
+
+    .video-carousel-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .life-at-muj-content {
+        gap: 30px;
+    }
+
+    .muj-heading .section-title {
+        font-size: 28px;
+    }
+
+    .muj-heading .btn-outline {
+        padding: 12px 24px;
+        font-size: 15px;
+    }
+
+    .video-carousel-container {
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .video-carousel {
+        height: 300px;
+    }
+
+    .video-wrapper {
+        height: 240px;
+    }
+
+    .play-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .video-caption {
+        padding: 0 5px;
+    }
+
+    .video-caption h4 {
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .video-caption p {
+        font-size: 13px;
+    }
+
+    .video-carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .video-carousel-btn.prev-btn {
+        left: 10px;
+    }
+
+    .video-carousel-btn.next-btn {
+        right: 10px;
+    }
+
+    .video-carousel-indicators {
+        bottom: 10px;
+    }
+
+    .video-indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.muj-heading {
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+.video-carousel-container {
+    animation: slideInFromRight 0.8s ease-out 0.2s both;
+}
+
+/* Auto-slide progress indicator */
+.video-carousel-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.video-carousel-progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    width: 0%;
+    transition: width 6s linear;
+}
+
+.video-slide.active .video-carousel-progress-bar {
+    width: 100%;
+    animation: videoProgress 6s linear;
+}
+
+@keyframes videoProgress {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Video loading state */
+.video-wrapper {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.video-wrapper.loaded {
+    background: #000;
+    animation: none;
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .video-carousel-btn {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .video-overlay:hover {
+        opacity: 1;
+    }
+
+    .play-btn:hover {
+        transform: none;
+    }
+}
+
+/* Accessibility */
+.video-carousel-btn:focus,
+.video-indicator:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.video-wrapper iframe {
+    pointer-events: auto;
+}
+
+/* YouTube embed optimizations */
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .muj-heading,
+    .video-carousel-container,
+    .video-slide {
+        animation: none;
+        transition: none;
+    }
+
+    .video-carousel-progress-bar {
+        display: none;
+    }
+
+    .video-carousel-btn:hover {
+        transform: translateY(-50%);
+    }
+
+    .play-btn:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .life-at-muj-section {
+        background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+    }
+
+    .video-carousel-container {
+        background: #1a1a1a;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .muj-heading .section-title {
+        color: white;
+    }
+
+    .muj-heading .section-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .video-carousel-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .video-carousel-btn:hover {
+        background: var(--primary-color);
+    }
+}

@@ -1,0 +1,98 @@
+// carousel.js - Background image carousel functionality
+class BackgroundCarousel {
+    constructor() {
+        this.backgroundImages = document.querySelectorAll('.background-image');
+        this.overlayTexts = document.querySelectorAll('.overlay-text');
+        this.currentIndex = 0;
+        this.totalItems = this.backgroundImages.length;
+        this.autoSlideInterval = null;
+        this.slideDuration = 5000; // 5 seconds
+        this.isTransitioning = false;
+        this.init();
+    }
+
+    init() {
+        this.startAutoSlide();
+        this.updateActiveSlide();
+    }
+
+    updateActiveSlide() {
+        // Remove active class from all
+        this.backgroundImages.forEach(img => img.classList.remove('active'));
+        this.overlayTexts.forEach(text => text.classList.remove('active'));
+
+        // Add active class to current
+        this.backgroundImages[this.currentIndex].classList.add('active');
+        this.overlayTexts[this.currentIndex].classList.add('active');
+    }
+
+    nextSlide() {
+        if (this.isTransitioning) return;
+
+        this.isTransitioning = true;
+        this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+        this.updateActiveSlide();
+
+        // Reset transition flag after transition completes
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 1200); // Match CSS transition duration
+    }
+
+    prevSlide() {
+        if (this.isTransitioning) return;
+
+        this.isTransitioning = true;
+        this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+        this.updateActiveSlide();
+
+        // Reset transition flag after transition completes
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 1200); // Match CSS transition duration
+    }
+
+    startAutoSlide() {
+        this.stopAutoSlide();
+
+        this.autoSlideInterval = setInterval(() => {
+            this.nextSlide();
+        }, this.slideDuration);
+    }
+
+    stopAutoSlide() {
+        if (this.autoSlideInterval) {
+            clearInterval(this.autoSlideInterval);
+            this.autoSlideInterval = null;
+        }
+    }
+
+    // Public method to manually control carousel
+    play() {
+        this.startAutoSlide();
+    }
+
+    pause() {
+        this.stopAutoSlide();
+    }
+
+    // Reset carousel to first slide
+    reset() {
+        this.currentIndex = 0;
+        this.updateActiveSlide();
+    }
+}
+
+// Initialize background carousel
+document.addEventListener('DOMContentLoaded', () => {
+    window.backgroundCarousel = new BackgroundCarousel();
+    
+    // Handle visibility change
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            window.backgroundCarousel.stopAutoSlide();
+        } else {
+            window.backgroundCarousel.startAutoSlide();
+        }
+    });
+});
