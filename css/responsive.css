@@ -509,6 +509,22 @@
         gap: 30px !important;
     }
     
+    /* Ensure all desktop navigation elements are visible */
+    .search-container,
+    .explore-dropdown,
+    .profile-dropdown,
+    .consulting-btn,
+    .goal-city-dropdown,
+    .write-review-btn,
+    .nav-actions {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        width: auto !important;
+        overflow: visible !important;
+    }
+    
     .search-container {
         display: block !important;
     }
@@ -528,6 +544,13 @@
     
     .sidebar-overlay {
         display: none !important;
+    }
+    
+    /* Ensure desktop dropdowns and modals are functional */
+    .explore-module,
+    .profile-module,
+    .goal-city-modal {
+        display: block !important;
     }
 }
 

@@ -14,42 +14,14 @@ class Animations {
     }
 
     setupScrollAnimations() {
-        // Add animation classes to elements
+        // Make all elements visible by default instead of animating on scroll
         const elementsToAnimate = document.querySelectorAll('.category-card, .college-card, .service-card, .exam-card, .recruiter-logo, .city-card');
         
         elementsToAnimate.forEach((element, index) => {
-            element.classList.add('animate-on-scroll');
-            element.style.animationDelay = `${index * 0.1}s`;
-            this.animatedElements.push(element);
-        });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Start counter animation if element has counter
-                    const counter = entry.target.querySelector('.counter');
-                    if (counter) {
-                        const counterData = this.counters.find(c => c.element === counter);
-                        if (counterData && !counterData.animated) {
-                            this.animateCounter(counterData);
-                            counterData.animated = true;
-                        }
-                    }
-                }
-            });
-        }, observerOptions);
-
-        this.animatedElements.forEach(element => {
-            observer.observe(element);
+            // Add visible class immediately instead of animate-on-scroll
+            element.classList.add('visible');
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
         });
     }
 

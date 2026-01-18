@@ -68,20 +68,8 @@
                         <li role="none"><a href="#help" class="nav-link" role="menuitem">Events</a></li> -->
                     </ul>
 
-                    <!-- Center Search Bar -->
-                    <div class="search-container">
-                        <form class="search-form" role="search">
-                            <input type="text" placeholder="Search Colleges, Courses, Exams, Cities" class="search-input" aria-label="Search">
-                            <button type="submit" class="search-btn" aria-label="Submit search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="nav-actions">
                         <!-- Explore Button -->
-                        <div class="nav-item explore-dropdown" role="none">
+                     <div class="nav-item explore-dropdown" role="none">
                             <button class="nav-link explore-btn" aria-haspopup="true" aria-expanded="false" role="button">
                                 <span>Explore</span>
                                 <i class="fas fa-chevron-down dropdown-icon"></i>
@@ -194,8 +182,94 @@
                             </div>
                         </div>
                         
+
+                    <!-- Center Search Bar -->
+                    <div class="search-container">
+                        <form class="search-form" role="search">
+                            <input type="text" placeholder="Search Colleges, Courses, Exams, Cities" class="search-input" aria-label="Search">
+                            <button type="submit" class="search-btn" aria-label="Submit search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="nav-actions">
+
+                       
                         <!-- Profile Icon -->
-                        <div class="nav-item profile-dropdown" role="none">
+                      
+                        <!-- Consulting Button -->
+                        <div class="nav-item" role="none">
+                            <button class="nav-link consulting-btn" id="consultingBtn" role="button">
+                                <i class="fas fa-headset"></i>
+                                <span>Consulting</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Goal & City Selection -->
+                        <div class="nav-item goal-city-dropdown" role="none">
+                            <button class="nav-link goal-city-btn" aria-haspopup="true" aria-expanded="false" role="menuitem">
+                                <i class="fas fa-bullseye"></i>
+                                <span>Select Goal & City</span>
+                            </button>
+                            <div class="goal-city-modal" role="dialog" aria-labelledby="goalCityModalTitle">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 id="goalCityModalTitle">Select Your Study Preference</h3>
+                                        <button class="skip-btn" aria-label="Skip selection">
+                                            Skip <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Step 1: Course Selection -->
+                                        <div class="step step-1 active">
+                                            <h4>Step 1: Select Study Goal</h4>
+                                            <div class="goal-options">
+                                                <button class="goal-option" data-goal="Engineering">Engineering</button>
+                                                <button class="goal-option" data-goal="Management">Management</button>
+                                                <button class="goal-option" data-goal="Medical">Medical</button>
+                                                <button class="goal-option" data-goal="Commerce">Commerce</button>
+                                                <button class="goal-option" data-goal="Arts">Arts</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Step 2: Location Selection -->
+                                        <div class="step step-2">
+                                            <h4>Step 2: Select City</h4>
+                                            <div class="search-box">
+                                                <input type="text" placeholder="Search cities..." class="location-search" aria-label="Search cities">
+                                                <i class="fas fa-search"></i>
+                                            </div>
+                                            <div class="location-grid">
+                                                <button class="location-option" data-location="New Delhi">New Delhi</button>
+                                                <button class="location-option" data-location="Mumbai">Mumbai</button>
+                                                <button class="location-option" data-location="Bangalore">Bangalore</button>
+                                                <button class="location-option" data-location="Chennai">Chennai</button>
+                                                <button class="location-option" data-location="Hyderabad">Hyderabad</button>
+                                                <button class="location-option" data-location="Pune">Pune</button>
+                                                <button class="location-option" data-location="Kolkata">Kolkata</button>
+                                                <button class="location-option" data-location="Ahmedabad">Ahmedabad</button>
+                                            </div>
+                                            <button class="skip-btn secondary">Skip City Selection</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary continue-btn">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Write Review Button -->
+                        <div class="nav-item" role="none">
+                            <a href="#review-page" class="nav-link write-review-btn" role="button">
+                                <i class="fas fa-pen"></i>
+                                <span>Write Review</span>
+                            </a>
+                        </div>
+
+                                               <div class="nav-item profile-dropdown" role="none">
                             <button class="nav-link profile-btn" aria-haspopup="true" aria-expanded="false" role="button">
                                 <i class="fas fa-user"></i>
                             </button>
@@ -285,76 +359,7 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Consulting Button -->
-                        <div class="nav-item" role="none">
-                            <button class="nav-link consulting-btn" id="consultingBtn" role="button">
-                                <i class="fas fa-headset"></i>
-                                <span>Consulting</span>
-                            </button>
-                        </div>
-                        
-                        <!-- Goal & City Selection -->
-                        <div class="nav-item goal-city-dropdown" role="none">
-                            <button class="nav-link goal-city-btn" aria-haspopup="true" aria-expanded="false" role="menuitem">
-                                <i class="fas fa-bullseye"></i>
-                                <span>Select Goal & City</span>
-                            </button>
-                            <div class="goal-city-modal" role="dialog" aria-labelledby="goalCityModalTitle">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 id="goalCityModalTitle">Select Your Study Preference</h3>
-                                        <button class="skip-btn" aria-label="Skip selection">
-                                            Skip <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Step 1: Course Selection -->
-                                        <div class="step step-1 active">
-                                            <h4>Step 1: Select Study Goal</h4>
-                                            <div class="goal-options">
-                                                <button class="goal-option" data-goal="Engineering">Engineering</button>
-                                                <button class="goal-option" data-goal="Management">Management</button>
-                                                <button class="goal-option" data-goal="Medical">Medical</button>
-                                                <button class="goal-option" data-goal="Commerce">Commerce</button>
-                                                <button class="goal-option" data-goal="Arts">Arts</button>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Step 2: Location Selection -->
-                                        <div class="step step-2">
-                                            <h4>Step 2: Select City</h4>
-                                            <div class="search-box">
-                                                <input type="text" placeholder="Search cities..." class="location-search" aria-label="Search cities">
-                                                <i class="fas fa-search"></i>
-                                            </div>
-                                            <div class="location-grid">
-                                                <button class="location-option" data-location="New Delhi">New Delhi</button>
-                                                <button class="location-option" data-location="Mumbai">Mumbai</button>
-                                                <button class="location-option" data-location="Bangalore">Bangalore</button>
-                                                <button class="location-option" data-location="Chennai">Chennai</button>
-                                                <button class="location-option" data-location="Hyderabad">Hyderabad</button>
-                                                <button class="location-option" data-location="Pune">Pune</button>
-                                                <button class="location-option" data-location="Kolkata">Kolkata</button>
-                                                <button class="location-option" data-location="Ahmedabad">Ahmedabad</button>
-                                            </div>
-                                            <button class="skip-btn secondary">Skip City Selection</button>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary continue-btn">Continue</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Write Review Button -->
-                        <div class="nav-item" role="none">
-                            <a href="#review-page" class="nav-link write-review-btn" role="button">
-                                <i class="fas fa-pen"></i>
-                                <span>Write Review</span>
-                            </a>
-                        </div>
+   
 
 
                     </div>
@@ -461,31 +466,46 @@
                         <div class="quick-action-section">
                             <div class="quick-action-cards">
                                 <div class="quick-card">
-                                    <i class="fas fa-question-circle"></i>
-                                    <span>Ask a Question</span>
+                                    <div class="quick-card-content">
+                                        <i class="fas fa-question-circle quick-card-icon"></i>
+                                        <span>Ask a Question</span>
+                                    </div>
                                 </div>
                                 <div class="quick-card">
-                                    <i class="fas fa-tasks"></i>
-                                    <span>Test Series</span>
+                                    <div class="quick-card-content">
+                                        <i class="fas fa-tasks quick-card-icon"></i>
+                                        <span>Test Series</span>
+                                    </div>
                                 </div>
                                 <div class="quick-card">
-                                    <i class="fas fa-puzzle-piece"></i>
-                                    <span>Practice Questions</span>
+                                    <div class="quick-card-content">
+                                        <i class="fas fa-puzzle-piece quick-card-icon"></i>
+                                        <span>Practice Questions</span>
+                                    </div>
                                 </div>
                                 <div class="quick-card">
-                                    <i class="fas fa-comments"></i>
-                                    <span>Read College Reviews</span>
+                                    <div class="quick-card-content">
+                                        <i class="fas fa-comments quick-card-icon"></i>
+                                        <span>Read College Reviews</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="study-abroad-section">
+                            <h3>Study Abroad</h3>
                             <div class="expandable-row">
-                                <span>Countries</span>
+                                <div class="expandable-row-content">
+                                    <i class="fas fa-globe expandable-icon"></i>
+                                    <span>Countries</span>
+                                </div>
                                 <i class="fas fa-plus"></i>
                             </div>
                             <div class="expandable-row">
-                                <span>Abroad Exams</span>
+                                <div class="expandable-row-content">
+                                    <i class="fas fa-plane expandable-icon"></i>
+                                    <span>Abroad Exams</span>
+                                </div>
                                 <i class="fas fa-plus"></i>
                             </div>
                         </div>
@@ -495,55 +515,82 @@
                             <ul class="popular-links-list">
                                 <li>
                                     <a href="#">
-                                        <span>Write a Review</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-magic popular-link-icon"></i>
+                                            <span>Write a Review</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>News</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-newspaper popular-link-icon"></i>
+                                            <span>News</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Admissions 2026</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-file-alt popular-link-icon"></i>
+                                            <span>Admissions 2026</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Top Courses</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-chart-line popular-link-icon"></i>
+                                            <span>Top Courses</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Institute</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-building popular-link-icon"></i>
+                                            <span>Institute</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Study Abroad</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-globe popular-link-icon"></i>
+                                            <span>Study Abroad</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Top Universities & Colleges</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-university popular-link-icon"></i>
+                                            <span>Top Universities & Colleges</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Scholarships</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-hand-holding-usd popular-link-icon"></i>
+                                            <span>Scholarships</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span>Exams</span>
+                                        <div class="popular-link-content">
+                                            <i class="fas fa-clipboard-list popular-link-icon"></i>
+                                            <span>Exams</span>
+                                        </div>
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
@@ -555,6 +602,65 @@
             </div>
         </nav>
     </header>
+
+        <!-- Profile Content Area - Initially Hidden -->
+    <section class="profile-content-area" id="profileContentArea" style="display: none;">
+        <div class="container">
+            <div class="profile-content-wrapper">
+                <div class="profile-header">
+                    <h2>User Profile</h2>
+                    <button class="close-profile-btn" id="closeProfileBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="profile-main-content">
+                    <div class="profile-info-section">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-details">
+                            <h3>Welcome, User!</h3>
+                            <p>Please log in or register to access your profile</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-options">
+                        <div class="profile-option-card">
+                            <i class="fas fa-user"></i>
+                            <h4>Account Settings</h4>
+                            <p>Manage your account information</p>
+                        </div>
+                        
+                        <div class="profile-option-card">
+                            <i class="fas fa-history"></i>
+                            <h4>Activity History</h4>
+                            <p>View your recent activity</p>
+                        </div>
+                        
+                        <div class="profile-option-card">
+                            <i class="fas fa-bookmark"></i>
+                            <h4>Saved Colleges</h4>
+                            <p>Colleges you've saved for later</p>
+                        </div>
+                        
+                        <div class="profile-option-card">
+                            <i class="fas fa-comment"></i>
+                            <h4>Reviews & Feedback</h4>
+                            <p>Manage your reviews</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-auth-section">
+                        <div class="auth-buttons">
+                            <button class="btn btn-primary login-btn">Login</button>
+                            <button class="btn btn-outline register-btn">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Hero Section -->
     <section class="hero" id="home">

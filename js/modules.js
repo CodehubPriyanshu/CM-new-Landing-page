@@ -66,32 +66,19 @@ class ModulesManager {
     setupProfileModule() {
         if (!this.profileBtn || !this.profileDropdown) return;
 
-        // Desktop: Hover behavior
+        // Desktop: Click behavior (no hover)
         if (window.innerWidth > 768) {
-            this.profileDropdown.addEventListener('mouseenter', () => {
-                this.openModule('profile');
-                this.adjustModulePosition('profile');
-            });
-
-            this.profileDropdown.addEventListener('mouseleave', (e) => {
-                if (!e.relatedTarget || !e.relatedTarget.closest('.profile-dropdown')) {
+            this.profileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (this.profileDropdown.classList.contains('active')) {
                     this.closeModule('profile');
+                } else {
+                    this.openModule('profile');
+                    this.adjustModulePosition('profile');
                 }
             });
-
-            // Keep module open when hovering over content
-            const profileModule = this.profileDropdown.querySelector('.profile-module');
-            if (profileModule) {
-                profileModule.addEventListener('mouseenter', () => {
-                    this.openModule('profile');
-                });
-
-                profileModule.addEventListener('mouseleave', (e) => {
-                    if (!e.relatedTarget || !e.relatedTarget.closest('.profile-dropdown')) {
-                        this.closeModule('profile');
-                    }
-                });
-            }
         } else {
             // Mobile: Click behavior
             this.profileBtn.addEventListener('click', (e) => {
@@ -323,7 +310,14 @@ class ModulesManager {
     }
 
     adjustModulePosition(moduleType) {
-        // Perfect dropdown positioning directly below buttons
+        // Check if we're on desktop to use panel layout, otherwise use dropdown positioning
+        if (window.innerWidth > 768 && moduleType === 'profile') {
+            // Desktop profile panel positioning - fixed right-aligned panel
+            this.positionProfilePanel();
+            return;
+        }
+        
+        // Mobile or explore module - use original dropdown positioning
         const dropdown = moduleType === 'explore' ? this.exploreDropdown : this.profileDropdown;
         const module = dropdown.querySelector('.explore-module, .profile-module');
         
@@ -390,6 +384,48 @@ class ModulesManager {
         
         // Force reflow for immediate positioning
         module.offsetHeight;
+    }
+    
+    positionProfilePanel() {
+        // Position the profile module as a fixed right-aligned panel for desktop
+        const profileModule = this.profileDropdown.querySelector('.profile-module');
+        if (!profileModule) return;
+        
+        // Get header height (default to 80px if not set)
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight : 80;
+        
+        // Set fixed positioning for desktop panel
+        profileModule.style.position = 'fixed';
+        profileModule.style.top = `${headerHeight}px`;
+        profileModule.style.right = '0';
+        profileModule.style.left = 'auto';
+        profileModule.style.width = '420px';
+        profileModule.style.height = `calc(100vh - ${headerHeight}px)`;
+        profileModule.style.maxHeight = 'none';
+        profileModule.style.marginTop = '0';
+        profileModule.style.borderRadius = '0';
+        profileModule.style.borderLeft = '1px solid rgba(0, 0, 0, 0.1)';
+        profileModule.style.borderTop = 'none';
+        profileModule.style.borderRight = 'none';
+        profileModule.style.borderBottom = 'none';
+        profileModule.style.boxShadow = '-5px 0 25px rgba(0, 0, 0, 0.1)';
+        profileModule.style.zIndex = '999';
+        profileModule.style.overflowY = 'auto';
+        profileModule.style.overflowX = 'hidden';
+        
+        // Ensure content adapts to panel height
+        const profileContent = profileModule.querySelector('.profile-content');
+        if (profileContent) {
+            profileContent.style.minHeight = '100%';
+            profileContent.style.padding = '30px';
+            profileContent.style.display = 'flex';
+            profileContent.style.flexDirection = 'column';
+            profileContent.style.gap = '25px';
+        }
+        
+        // Force reflow
+        profileModule.offsetHeight;
     }
 
     loadSavedPreferences() {

@@ -3,23 +3,31 @@
 .mobile-sidebar {
     position: fixed;
     top: 0;
-    left: -100%;
+    right: -100%;
     width: 85%;
     max-width: 320px;
     height: 100vh;
     background: white;
     z-index: 1001;
-    transition: left 0.3s ease;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    overflow-y: hidden;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    /* Ensure no layout shifts */
-    will-change: left;
+    /* Ensure no layout shifts and instant rendering */
+    will-change: right;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    /* Prevent blank screen on open */
+    visibility: visible;
+    opacity: 1;
 }
 
 .mobile-sidebar.active {
-    left: 0;
+    right: 0;
+    /* Ensure instant visibility when active */
+    visibility: visible;
+    opacity: 1;
 }
 
 .sidebar-overlay {
@@ -82,30 +90,45 @@
 
 .sidebar-header-actions {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     margin-left: auto;
     /* Ensure touch-friendly sizing */
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .write-review-link {
     color: #333;
-    font-size: 14px;
+    font-size: 13px;
     text-decoration: none;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .upto-cta {
-    color: #ff6b35;
-    font-size: 14px;
+    background: #ff6b35;
+    color: white;
+    font-size: 12px;
     text-decoration: none;
     font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.upto-cta:hover {
+    background: #e55a2b;
 }
 
 .mobile-sidebar-content {
     padding: 20px 15px;
     flex: 1;
-    overflow-y: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Ensure smooth scrolling and no layout shifts */
+    scroll-behavior: smooth;
+    will-change: scroll-position;
 }
 
 .select-goal-section {
@@ -164,7 +187,7 @@
 
 .search-input-wrapper input {
     width: 100%;
-    padding: 12px 40px 12px 15px;
+    padding: 12px 15px 12px 40px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     font-size: 14px;
@@ -173,10 +196,11 @@
 
 .search-input-wrapper i {
     position: absolute;
-    right: 15px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: #999;
+    font-size: 14px;
 }
 
 .categories-list {
@@ -208,12 +232,19 @@
 }
 
 .all-courses-link {
-    display: block;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 0;
     color: #007bff;
     text-decoration: none;
     font-weight: 500;
+    font-size: 14px;
+    gap: 5px;
+}
+
+.all-courses-link::after {
+    content: '>';
     font-size: 14px;
 }
 
@@ -287,16 +318,13 @@
 
 .quick-card {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 15px 10px;
+    padding: 12px 15px;
     background: #f8f9fa;
     border-radius: 8px;
-    text-align: center;
     cursor: pointer;
     /* Touch-friendly sizing */
-    min-height: 80px;
+    min-height: 56px;
     transition: background-color 0.2s ease;
 }
 
@@ -304,19 +332,34 @@
     background-color: #e9ecef;
 }
 
-.quick-card i {
+.quick-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.quick-card-icon {
     font-size: 18px;
     color: #007bff;
-    margin-bottom: 8px;
+    flex-shrink: 0;
 }
 
 .quick-card span {
-    font-size: 13px;
+    font-size: 14px;
     color: #333;
+    font-weight: 500;
 }
 
 .study-abroad-section {
     margin-bottom: 25px;
+}
+
+.study-abroad-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    color: #333;
 }
 
 .expandable-row {
@@ -338,10 +381,27 @@
     border-bottom: none;
 }
 
+.expandable-row-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.expandable-icon {
+    font-size: 16px;
+    color: #007bff;
+    flex-shrink: 0;
+}
+
 .expandable-row span {
     font-size: 15px;
     color: #333;
     font-weight: 500;
+}
+
+.expandable-row i.fa-plus {
+    color: #999;
+    font-size: 14px;
 }
 
 .popular-links-section {
@@ -381,23 +441,99 @@
     transition: color 0.2s ease;
 }
 
-.popular-links-list a span {
-    font-size: 14px;
+.popular-link-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
 }
 
-.popular-links-list a i {
+.popular-link-icon {
+    font-size: 16px;
+    color: #007bff;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+
+.popular-links-list a span {
+    font-size: 14px;
+    color: #333;
+}
+
+.popular-links-list a i.fa-chevron-right {
     color: #ccc;
     font-size: 12px;
+    flex-shrink: 0;
 }
 
 .popular-links-list a:hover {
     color: #007bff;
 }
 
+.popular-links-list a:hover span {
+    color: #007bff;
+}
+
+/* Ensure mobile sidebar is only visible on mobile */
+@media (min-width: 769px) {
+    .mobile-sidebar,
+    .sidebar-overlay {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+/* Make sure main content is not affected when mobile sidebar is open */
+@media (max-width: 768px) {
+    .mobile-sidebar.active ~ .nav-container .nav-menu,
+    .mobile-sidebar.active ~ .nav-container .nav-menu.active {
+        position: static !important;
+        left: auto !important;
+        display: flex !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Ensure no left-side menus appear when right-side sidebar is active */
+    .mobile-sidebar.active .nav-menu {
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+    }
+}
+
+/* Mobile-only optimizations */
+@media (max-width: 768px) {
+    /* Ensure sidebar is always ready, just positioned off-screen */
+    .mobile-sidebar {
+        display: flex;
+        visibility: visible;
+    }
+    
+    /* Prevent any fixed or floating elements from interfering */
+    .mobile-sidebar * {
+        position: relative;
+    }
+    
+    .mobile-sidebar .mobile-sidebar-header {
+        position: sticky;
+    }
+    
+    /* Ensure smooth scrolling without delays */
+    .mobile-sidebar-content {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .mobile-sidebar {
         width: 100%;
+        max-width: 100%;
     }
     
     .mobile-sidebar-header {
@@ -411,5 +547,16 @@
     .career-grid,
     .quick-action-cards {
         grid-template-columns: 1fr;
+    }
+    
+    .sidebar-header-actions {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-end;
+    }
+    
+    .write-review-link,
+    .upto-cta {
+        font-size: 12px;
     }
 }

@@ -39,9 +39,151 @@ function initializeNavbar() {
 function setupDropdowns() {
     console.log('Setting up dropdowns...');
     
-    // Removed Explore dropdown functionality as it has been removed from HTML
+    // Desktop-specific event handling
+    if (window.innerWidth > 768) {
+        setupDesktopDropdowns();
+    } else {
+        setupMobileDropdowns();
+    }
     
-    // Other dropdown functionality can go here if needed
+    // Listen for window resize to adjust behavior
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            setupDesktopDropdowns();
+        } else {
+            setupMobileDropdowns();
+        }
+        
+        // If profile content is currently displayed and screen size changes,
+        // we might need to adjust the display behavior
+        const profileContentArea = document.getElementById('profileContentArea');
+        if (profileContentArea && profileContentArea.style.display === 'block' && window.innerWidth <= 768) {
+            // On mobile, hide the content area and show the dropdown instead
+            profileContentArea.style.display = 'none';
+            document.body.classList.remove('profile-content-visible');
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                heroSection.style.display = 'block';
+            }
+        }
+    });
+}
+
+// Setup desktop-specific dropdown behavior
+function setupDesktopDropdowns() {
+    // Explore dropdown - hover only on desktop
+    const exploreDropdown = document.querySelector('.explore-dropdown');
+    if (exploreDropdown) {
+        // Remove click listeners to ensure hover-only behavior
+        const exploreBtn = exploreDropdown.querySelector('.explore-btn');
+        if (exploreBtn) {
+            exploreBtn.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // On desktop, clicking should not open the dropdown
+                // Hover interaction is used instead
+            };
+        }
+        
+        // Ensure hover behavior works
+        exploreDropdown.addEventListener('mouseenter', function() {
+            this.classList.add('active');
+            // Update aria-expanded for accessibility
+            const exploreBtn = this.querySelector('.explore-btn');
+            if (exploreBtn) {
+                exploreBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        exploreDropdown.addEventListener('mouseleave', function() {
+            this.classList.remove('active');
+            // Update aria-expanded for accessibility
+            const exploreBtn = this.querySelector('.explore-btn');
+            if (exploreBtn) {
+                exploreBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+    
+    // Profile dropdown - click only on desktop
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    if (profileDropdown) {
+        // Remove hover listeners to ensure click-only behavior
+        profileDropdown.removeEventListener('mouseenter', handleProfileHover);
+        profileDropdown.removeEventListener('mouseleave', handleProfileLeave);
+        
+        // Add click listener for profile
+        const profileBtn = profileDropdown.querySelector('.profile-btn');
+        if (profileBtn) {
+            profileBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Instead of showing the dropdown, show the profile content in main content area
+                showProfileContent();
+            });
+        }
+    }
+}
+
+// Setup mobile-specific dropdown behavior
+function setupMobileDropdowns() {
+    // Explore dropdown - click only on mobile
+    const exploreDropdown = document.querySelector('.explore-dropdown');
+    if (exploreDropdown) {
+        // Clear previous event listeners
+        exploreDropdown.removeEventListener('mouseenter', null);
+        exploreDropdown.removeEventListener('mouseleave', null);
+        
+        const exploreBtn = exploreDropdown.querySelector('.explore-btn');
+        if (exploreBtn) {
+            // Remove any previous click handlers
+            exploreBtn.replaceWith(exploreBtn.cloneNode(true)); // This removes all event listeners
+            const newExploreBtn = exploreDropdown.querySelector('.explore-btn');
+            newExploreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isActive = exploreDropdown.classList.contains('active');
+                
+                closeAllDropdowns();
+                
+                if (!isActive) {
+                    exploreDropdown.classList.add('active');
+                    this.setAttribute('aria-expanded', 'true');
+                } else {
+                    this.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    }
+    
+    // Profile dropdown - click only on mobile
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    if (profileDropdown) {
+        const profileBtn = profileDropdown.querySelector('.profile-btn');
+        if (profileBtn) {
+            // Remove any previous click handlers
+            profileBtn.replaceWith(profileBtn.cloneNode(true)); // This removes all event listeners
+            const newProfileBtn = profileDropdown.querySelector('.profile-btn');
+            newProfileBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // On mobile, continue to use the dropdown behavior
+                const isActive = profileDropdown.classList.contains('active');
+                
+                closeAllDropdowns();
+                
+                if (!isActive) {
+                    profileDropdown.classList.add('active');
+                    this.setAttribute('aria-expanded', 'true');
+                } else {
+                    this.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    }
 }
 
 // Setup mobile menu functionality
@@ -217,8 +359,8 @@ function closeGoalCityModal() {
 
 // Setup Profile dropdown functionality
 function setupProfileDropdown() {
-    console.log('Profile dropdown functionality removed as it has been removed from HTML');
-    // Profile dropdown functionality has been removed as it has been removed from HTML
+    // Profile dropdown is handled in setupDropdowns function
+    console.log('Profile dropdown functionality managed in setupDropdowns');
 }
 
 function updateProfileUI() {
@@ -264,6 +406,82 @@ function closeProfileDropdown() {
     if (profileDropdown) {
         profileDropdown.classList.remove('active');
         profileBtn.setAttribute('aria-expanded', 'false');
+    }
+}
+
+// Show profile content in main content area (desktop) or dropdown (mobile)
+function showProfileContent() {
+    // Check screen size to determine behavior
+    if (window.innerWidth > 768) {
+        // Desktop behavior: show profile content in main content area
+        showProfileInContentArea();
+    } else {
+        // Mobile behavior: use dropdown as before
+        showProfileDropdown();
+    }
+}
+
+// Show profile content in main content area
+function showProfileInContentArea() {
+    // Close all dropdowns first
+    closeAllDropdowns();
+    
+    // Hide the hero section and other main content if needed
+    const heroSection = document.getElementById('home');
+    if (heroSection) {
+        heroSection.style.display = 'none';
+    }
+    
+    // Show the profile content area
+    const profileContentArea = document.getElementById('profileContentArea');
+    if (profileContentArea) {
+        profileContentArea.style.display = 'block';
+        
+        // Add class to body for proper styling
+        document.body.classList.add('profile-content-visible');
+        
+        // Scroll to the profile content area
+        profileContentArea.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Show profile dropdown (for mobile)
+function showProfileDropdown() {
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    if (profileDropdown) {
+        profileDropdown.classList.add('active');
+        const profileBtn = document.querySelector('.profile-btn');
+        if (profileBtn) {
+            profileBtn.setAttribute('aria-expanded', 'true');
+        }
+    }
+}
+
+// Close profile content and show main content again
+function closeProfileContent() {
+    // Hide the profile content area
+    const profileContentArea = document.getElementById('profileContentArea');
+    if (profileContentArea) {
+        profileContentArea.style.display = 'none';
+    }
+    
+    // Show the hero section and other main content
+    const heroSection = document.getElementById('home');
+    if (heroSection) {
+        heroSection.style.display = 'block';
+    }
+    
+    // Remove class from body
+    document.body.classList.remove('profile-content-visible');
+    
+    // Close any open profile dropdown
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    if (profileDropdown) {
+        profileDropdown.classList.remove('active');
+        const profileBtn = document.querySelector('.profile-btn');
+        if (profileBtn) {
+            profileBtn.setAttribute('aria-expanded', 'false');
+        }
     }
 }
 
@@ -555,8 +773,8 @@ function setupCategoryItems() {
             // For now, we'll just log the selection
             alert(`You selected: ${categoryName}\nThis would navigate to the ${categoryName} category page.`);
             
-            // Optionally close the sidebar after selection
-            // closeMobileSidebar();
+            // Close the sidebar after selection
+            closeMobileSidebar();
         });
     });
 }
@@ -571,6 +789,9 @@ function setupQuickActionCards() {
             console.log(`Quick action selected: ${cardText}`);
             
             alert(`You selected: ${cardText}\nThis would open the ${cardText} feature.`);
+            
+            // Close the sidebar after selection
+            closeMobileSidebar();
         });
     });
 }
@@ -585,6 +806,9 @@ function setupCareerCards() {
             console.log(`Career card selected: ${cardText}`);
             
             alert(`You selected: ${cardText}\nThis would open the ${cardText} feature.`);
+            
+            // Close the sidebar after selection
+            closeMobileSidebar();
         });
     });
 }
@@ -600,6 +824,9 @@ function setupPopularLinks() {
             console.log(`Popular link selected: ${linkText}`);
             
             alert(`You selected: ${linkText}\nThis would navigate to the ${linkText} page.`);
+            
+            // Close the sidebar after selection
+            closeMobileSidebar();
         });
     });
 }
@@ -629,6 +856,9 @@ function setupStudyAbroadRows() {
             // In a real implementation, you would show/hide additional content
             // For now, just show an alert
             alert(`You selected: ${rowText}\nThis would show more details about ${rowText}.`);
+            
+            // Close the sidebar after selection
+            closeMobileSidebar();
         });
     });
 }
@@ -665,8 +895,8 @@ function setupAllCoursesLink() {
             
             alert('This would show all available courses.\nNavigating to the complete course catalog.');
             
-            // Optionally close the sidebar and navigate
-            // closeMobileSidebar();
+            // Close the sidebar after selection
+            closeMobileSidebar();
             // window.location.href = '/courses'; // Replace with actual URL
         });
     }
@@ -715,6 +945,19 @@ if (hamburgerBtn) {
     hamburgerBtn.addEventListener('click', toggleMobileMenu);
 }
 
+// Setup profile content close button
+function setupProfileContentClose() {
+    const closeProfileBtn = document.getElementById('closeProfileBtn');
+    if (closeProfileBtn) {
+        closeProfileBtn.addEventListener('click', function() {
+            closeProfileContent();
+        });
+    }
+}
+
+// Initialize profile content close functionality
+setupProfileContentClose();
+
 // Export functions for external use
 window.NavbarFunctions = {
     closeAllDropdowns,
@@ -723,5 +966,7 @@ window.NavbarFunctions = {
     updateProfileUI,
     setupModuleInteractions,
     preventBodyScroll,
-    toggleMobileMenu
+    toggleMobileMenu,
+    showProfileContent,
+    closeProfileContent
 };

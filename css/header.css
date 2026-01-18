@@ -25,6 +25,8 @@
     margin: 0 auto;
     padding: 0 30px;
     flex-wrap: wrap; /* Allow wrapping on small screens */
+    /* Ensure proper alignment for corner positioning */
+    position: relative;
 }
 
 .logo {
@@ -175,10 +177,13 @@
     background: rgba(41, 98, 255, 0.1);
 }
 
-/* Profile Dropdown - Extreme Right */
+/* Profile Dropdown - Extreme Right Corner */
 .profile-dropdown {
     margin-left: auto;
     position: relative;
+    /* Ensure it's pushed to the absolute right corner */
+    margin-right: 0;
+    flex-shrink: 0;
 }
 
 .profile-btn {
@@ -195,6 +200,9 @@
     transition: all 0.3s ease;
     position: relative;
     padding: 0;
+    /* Ensure perfect corner alignment */
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .profile-btn:hover {
@@ -249,25 +257,24 @@
 }
 
 @media (max-width: 992px) {
+    /* Disable left-side mobile menu to use only right-side mobile sidebar */
     .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: white;
-        flex-direction: column;
-        padding: 30px;
-        gap: 25px;
-        transition: var(--transition);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        overflow-y: auto;
-        align-items: stretch;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        flex-direction: row;
+        padding: 0;
+        gap: 15px;
+        box-shadow: none;
+        z-index: auto;
+        overflow-y: visible;
+        align-items: center;
     }
     
     .nav-menu.active {
-        left: 0;
+        position: static;
+        left: auto;
     }
     
     .nav-menu > :not(.profile-dropdown) {

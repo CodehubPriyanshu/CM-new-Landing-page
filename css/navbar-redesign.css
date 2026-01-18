@@ -401,25 +401,24 @@
 }
 
 @media (max-width: 992px) {
+    /* Disable left-side mobile menu to use only right-side mobile sidebar */
     .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: white;
-        flex-direction: column;
-        padding: 30px;
-        gap: 25px;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        overflow-y: auto;
-        align-items: stretch;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        flex-direction: row;
+        padding: 0;
+        gap: 15px;
+        box-shadow: none;
+        z-index: auto;
+        overflow-y: visible;
+        align-items: center;
     }
     
     .nav-menu.active {
-        left: 0;
+        position: static;
+        left: auto;
     }
     
     /* Hide old mobile menu when new sidebar is active */
@@ -590,9 +589,31 @@
         height: 28px;
     }
     
-    .search-container {
-        order: 3;
-        margin: 15px 0;
+    /* Completely hide all desktop navigation elements in mobile view */
+    .search-container,
+    .explore-dropdown,
+    .profile-dropdown,
+    .consulting-btn,
+    .goal-city-dropdown,
+    .write-review-btn {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    /* Hide any floating or stacked CTAs */
+    .nav-actions {
+        display: none !important;
+    }
+    
+    /* Ensure no overlays or legacy UI from desktop elements */
+    .explore-module,
+    .profile-module,
+    .goal-city-modal {
+        display: none !important;
     }
     
     .goal-options,
@@ -663,6 +684,53 @@
 .goal-city-modal,
 .profile-panel {
     animation: fadeInDown 0.3s ease;
+}
+
+/* Desktop-only styles for hover interactions */
+@media (min-width: 769px) {
+    /* Explore dropdown - hover only on desktop */
+    .explore-dropdown:hover .explore-module {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    
+    /* Prevent click activation of explore dropdown on desktop */
+    .explore-dropdown.active .explore-module {
+        display: none;
+    }
+    
+    /* Profile dropdown - click only on desktop */
+    .profile-dropdown.active .profile-module {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    
+    /* Prevent hover activation of profile dropdown on desktop */
+    .profile-dropdown:hover .profile-module {
+        display: none;
+    }
+}
+
+/* Mobile-only styles to maintain existing behavior */
+@media (max-width: 768px) {
+    .explore-dropdown.active .explore-module {
+        display: block;
+    }
+    
+    .profile-dropdown.active .profile-module {
+        display: block;
+    }
+    
+    /* On mobile, ensure hover doesn't activate desktop behaviors */
+    .explore-dropdown:hover .explore-module {
+        display: none;
+    }
+    
+    .profile-dropdown:hover .profile-module {
+        display: none;
+    }
 }
 
 /* Consulting Modal Styles */
