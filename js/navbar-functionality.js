@@ -681,18 +681,31 @@ function setupModuleInteractions() {
 // Prevent body scroll when mobile menu is open
 function preventBodyScroll(isPrevented) {
     if (isPrevented) {
+        // Lock scrolling by storing current scroll position
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        document.body.style.top = `-${scrollPosition}px`;
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
         document.body.style.width = '100%';
     } else {
+        // Restore scrolling and position
+        const scrollPosition = document.body.style.top;
         document.body.style.overflow = '';
         document.body.style.position = '';
         document.body.style.width = '';
+        if (scrollPosition) {
+            const initialPosition = parseInt(scrollPosition) * -1;
+            document.body.style.top = '';
+            window.scrollTo(0, initialPosition);
+        }
     }
 }
 
 // Handle mobile menu toggle
 function toggleMobileMenu() {
+    // Only proceed if the screen is small enough to be considered mobile
+    if (window.innerWidth > 768) return;
+    
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const mobileSidebar = document.getElementById('mobileSidebar');
     const sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -751,11 +764,14 @@ function setupSidebarOverlay() {
     
     if (sidebarOverlay && mobileSidebar && mobileBtn) {
         sidebarOverlay.addEventListener('click', function() {
-            mobileSidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            mobileBtn.setAttribute('aria-expanded', 'false');
-            preventBodyScroll(false);
+            // Only close if currently on mobile viewport
+            if (window.innerWidth <= 768) {
+                mobileSidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileBtn.setAttribute('aria-expanded', 'false');
+                preventBodyScroll(false);
+            }
         });
     }
 }
@@ -920,9 +936,7 @@ function closeMobileSidebar() {
     }
     
     // Restore body scroll
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
+    preventBodyScroll(false);
 }
 
 // Initialize search functionality
@@ -942,8 +956,36 @@ setupAllCoursesLink();
 // Connect hamburger menu button to toggle function
 const hamburgerBtn = document.querySelector('.mobile-menu-btn');
 if (hamburgerBtn) {
-    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    hamburgerBtn.addEventListener('click', function() {
+        // Only handle click if screen is mobile size
+        if (window.innerWidth <= 768) {
+            toggleMobileMenu();
+        }
+    });
 }
+
+// Handle window resize to close sidebar if switching from mobile to desktop
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        // Close mobile sidebar if it's open
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (mobileSidebar && mobileSidebar.classList.contains('active')) {
+            mobileSidebar.classList.remove('active');
+            if (sidebarOverlay) {
+                sidebarOverlay.classList.remove('active');
+            }
+            if (mobileBtn) {
+                mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileBtn.setAttribute('aria-expanded', 'false');
+            }
+            // Restore body scroll
+            preventBodyScroll(false);
+        }
+    }
+});
 
 // Setup profile content close button
 function setupProfileContentClose() {
