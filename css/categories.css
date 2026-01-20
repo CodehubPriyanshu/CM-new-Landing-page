@@ -13,12 +13,17 @@
 .category-card {
     background: white;
     border-radius: var(--border-radius);
-    padding: 25px;
+    padding: 25px 15px; /* Reduced horizontal padding for mobile fit */
     text-align: center;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     cursor: pointer;
     border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px; /* Ensure consistent height */
 }
 
 .category-card:hover {
@@ -29,17 +34,23 @@
 
 .category-icon {
     font-size: 40px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     transition: var(--transition);
+    align-self: center;
 }
 
 .category-card h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
+    font-size: 16px;
+    margin-bottom: 5px;
     color: var(--text-dark);
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .category-card p {
     color: var(--text-light);
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
