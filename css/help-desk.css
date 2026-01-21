@@ -4,6 +4,17 @@
     background: var(--bg-white);
 }
 
+.help-card-link {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.help-card-link:hover {
+    transform: translateY(-3px);
+    text-decoration: none;
+}
+
 .help-desk-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
