@@ -1,5 +1,30 @@
 // Add to main.js after existing code
 
+// Function to handle college image loading
+function initCollegeImageLoading() {
+    // Select all college images in both sections
+    const collegeImages = document.querySelectorAll('.student-choice-colleges .college-image img, .placement-verified-colleges .college-image img');
+    
+    collegeImages.forEach(img => {
+        // Check if image is already loaded
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            // Add loaded class when image finishes loading
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+            
+            // Also handle error case
+            img.addEventListener('error', function() {
+                console.error('Failed to load image:', this.src);
+                // Still add loaded class to ensure it's visible even if broken
+                this.classList.add('loaded');
+            });
+        }
+    });
+}
+
 // Initialize dropdown interactions
 function initDropdownInteractions() {
     // Handle goal selection in profile dropdown
@@ -83,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     this.updateFooterYear();
     this.checkBrowserCompatibility();
     initDropdownInteractions(); // Add this line
+    initCollegeImageLoading(); // Add this line to handle college image loading
     
     // Load saved user goal
     const savedGoal = Utils.loadFromStorage('user_goal');

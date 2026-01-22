@@ -24,6 +24,19 @@
     border-radius: 16px;
 }
 
+.placement-verified-colleges .college-badge {
+    z-index: 4;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* Specific styles for placement verified colleges card */
 .placement-verified-colleges .college-card {
     position: relative;
@@ -32,6 +45,20 @@
     height: 100%;
     min-height: 350px;
     padding: 20px;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    overflow: visible;
+}
+
+.placement-verified-colleges .college-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Ensure college image container has proper positioning */
+.placement-verified-colleges .college-card .college-image {
+    position: relative;
+    overflow: visible;
 }
 
 /* General college card styles */
@@ -57,14 +84,24 @@
     background-color: #f8f9fa;
 }
 
-.placement-verified-colleges .college-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-    display: block;
+.placement-verified-colleges .college-card .college-image {
+    margin: -20px -20px 12px -20px !important;
+    width: calc(100% + 40px) !important;
     background-color: #f8f9fa;
 }
+
+.placement-verified-colleges .college-card .college-image img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block !important;
+    background-color: #f8f9fa;
+    opacity: 1 !important;
+    transition: none !important;
+    min-height: 100px;
+}
+
+
 
 .college-card:hover {
     transform: translateY(-5px);

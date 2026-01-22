@@ -22,6 +22,43 @@
     margin-top: 40px;
 }
 
+/* Mobile layout - 2 cards per row */
+@media (max-width: 768px) {
+    .help-desk-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .help-card {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .help-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        margin: 0 auto 15px;
+    }
+    
+    .help-card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .help-card p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        min-height: auto;
+    }
+    
+    .help-link {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+}
+
 .help-card {
     background: white;
     border-radius: var(--border-radius);

@@ -21,6 +21,57 @@
         margin-bottom: 10px;
     }
     
+    /* Footer Links Row - Quick Links and Top Exams in one row with 50% width each */
+    .footer-links-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .footer-links-row > div:nth-child(1),
+    .footer-links-row > div:nth-child(2) {
+        flex: 1 1 50%;
+        min-width: 45%; /* Ensure each takes approximately 50% width */
+        margin-bottom: 0;
+    }
+    
+    /* Student Helpdesk comes below the first row */
+    .footer-links-row > div:nth-child(3) {
+        flex: 1 1 100%; /* Takes full width below the first row */
+        margin-top: 15px;
+    }
+    
+    /* Adjust footer sections for mobile */
+    .footer-section {
+        padding: 20px 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-section h3 {
+        font-size: 17px;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+        font-weight: 600;
+        text-align: center;
+        position: relative;
+    }
+    
+    .footer-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+        background: var(--primary-color);
+        border-radius: 1px;
+    }
+    
     .brand-section .logo {
         display: flex;
         flex-direction: column;

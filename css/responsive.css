@@ -1,4 +1,21 @@
 /* responsive.css - Responsive design styles */
+
+/* Desktop - 4 columns for specific sections */
+@media (min-width: 1025px) {
+    .colleges-slider,
+    .student-choice-grid,
+    .placement-verified-grid,
+    .exams-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 25px !important;
+    }
+    
+    .blogs-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 25px !important;
+    }
+}
+
 @media (max-width: 1200px) {
     .hero-title {
         font-size: 42px;
@@ -76,128 +93,6 @@
 }
 
 @media (max-width: 768px) {
-    /* Student's Help Desk Mobile Redesign */
-    .help-desk-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 30px;
-    }
-    
-    .help-card-link {
-        text-decoration: none;
-        display: block;
-        transition: transform 0.3s ease;
-    }
-    
-    .help-card-link:hover {
-        transform: translateY(-3px);
-        text-decoration: none;
-    }
-    
-    .help-card {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        text-align: left;
-        background: #ffffff;
-        border: 1px solid #f0f0f0;
-    }
-    
-    /* All cards - highlighted with blue gradient background */
-    .help-card {
-        background: linear-gradient(135deg, #2962ff 0%, #00b0ff 100%);
-        color: white;
-        border: none;
-        box-shadow: 0 6px 20px rgba(41, 98, 255, 0.3);
-    }
-    
-    .help-card h3,
-    .help-card p {
-        color: white;
-    }
-    
-    .help-card .help-link {
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .help-card .help-link:hover {
-        background: white;
-        color: #2962ff;
-    }
-    
-    .help-icon {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 20px;
-        margin: 0 15px 0 0;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .help-card-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    /* Ensure buttons are clearly visible */
-    .help-card-content .help-link {
-        margin-top: auto;
-        margin-bottom: 5px;
-    }
-    
-    .help-card h3 {
-        font-size: 18px;
-        margin: 0 0 8px 0;
-        color: white;
-        font-weight: 600;
-    }
-    
-    .help-card p {
-        font-size: 14px;
-        margin: 0 0 15px 0;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.5;
-        min-height: auto;
-    }
-    
-    .help-link {
-        align-self: flex-start;
-        padding: 10px 20px;
-        font-size: 14px;
-        font-weight: 600;
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.25);
-        color: white;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 5px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .help-card-link:hover .help-link {
-        background: white;
-        color: #2962ff;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(41, 98, 255, 0.4);
-        border-color: white;
-    }
     
     /* Navigation */
     .nav-menu {
@@ -266,35 +161,43 @@
         grid-template-columns: 1fr;
     }
     
-    /* Three-column layout for categories on mobile */
-    .categories-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        padding: 0 15px;
-    }
+    
     
     .category-card {
-        padding: 18px 8px;
-        min-height: 140px;
+        padding: 16px 10px;
+        min-height: 130px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
+        border-radius: 10px; /* Slightly more rounded for mobile */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06); /* Softer shadow for mobile */
+        transition: all 0.3s ease; /* Smooth transition */
     }
     
+    .category-card:active {
+        transform: scale(0.96); /* Press down effect for touch */
+    }
+    
+
+    
     .category-icon {
-        font-size: 28px;
-        margin-bottom: 6px;
+        font-size: 30px;
+        margin-bottom: 5px;
         align-self: center;
     }
     
     .category-card h3 {
-        font-size: 14px;
-        margin: 6px 0 4px;
+        font-size: 13px;
+        margin: 5px 0 3px;
         line-height: 1.3;
         word-break: break-word;
         overflow-wrap: break-word;
+        font-weight: 600;
+        min-height: 32px; /* Consistent height for titles */
+        display: flex;
+        align-items: center;
     }
     
     .category-card p {
@@ -303,6 +206,15 @@
         line-height: 1.3;
         word-break: break-word;
         overflow-wrap: break-word;
+        min-height: 24px; /* Consistent height for descriptions */
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Ensure consistent heights for better grid alignment on mobile */
+    .category-card h3,
+    .category-card p {
+        flex: none; /* Prevent flex growth */
     }
     
     .footer-content {
@@ -311,14 +223,16 @@
     
     /* Section Titles */
     .section-title {
-        font-size: 28px;
+        font-size: 26px;
         text-align: center;
+        margin-bottom: 10px; /* Reduce space */
     }
     
     .section-subtitle {
-        font-size: 16px;
-        margin-bottom: 30px;
+        font-size: 15px;
+        margin-bottom: 25px; /* Reduce space */
         text-align: center;
+        line-height: 1.4; /* Better readability */
     }
     
     /* Blogs Section */
@@ -524,44 +438,8 @@
         grid-template-columns: 1fr;
     }
     
-    /* Additional category grid adjustments for very small screens */
-    .categories-grid {
-        grid-template-columns: repeat(3, 1fr); /* Updated to 3-column layout */
-        gap: 8px;
-        padding: 0 10px;
-    }
+    /* Two-column layout for categories on small screens */
     
-    .category-card {
-        padding: 16px 6px;
-        min-height: 130px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .category-icon {
-        font-size: 24px;
-        margin-bottom: 5px;
-        align-self: center;
-    }
-    
-    .category-card h3 {
-        font-size: 13px;
-        margin: 5px 0 3px;
-        line-height: 1.3;
-        word-break: break-word;
-        overflow-wrap: break-word;
-    }
-    
-    .category-card p {
-        font-size: 10px;
-        margin: 0;
-        line-height: 1.2;
-        word-break: break-word;
-        overflow-wrap: break-word;
-    }
 }
 
 @media (max-width: 320px) {
@@ -577,10 +455,10 @@
         padding: 20px;
     }
     
-    /* Specific adjustments for category cards in smallest screens */
+    /* Two-column layout maintained for smallest screens */
     .category-card {
-        padding: 12px 4px;
-        min-height: 115px;
+        padding: 12px 6px;
+        min-height: 110px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -589,31 +467,43 @@
     }
     
     .category-icon {
-        font-size: 18px;
-        margin-bottom: 4px;
+        font-size: 22px;
+        margin-bottom: 3px;
         align-self: center;
     }
     
     .category-card h3 {
         font-size: 11px;
-        margin: 4px 0 2px;
+        margin: 3px 0 2px;
         line-height: 1.2;
         word-break: break-word;
         overflow-wrap: break-word;
+        min-height: 26px;
+        display: flex;
+        align-items: center;
     }
     
     .category-card p {
-        font-size: 8px;
+        font-size: 9px;
         margin: 0;
         line-height: 1.1;
         word-break: break-word;
         overflow-wrap: break-word;
+        min-height: 20px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Ensure consistent heights for better grid alignment on smallest screens */
+    .category-card h3,
+    .category-card p {
+        flex: none; /* Prevent flex growth */
     }
     
     .categories-grid {
-        grid-template-columns: repeat(3, 1fr); /* Updated to 3-column layout */
-        gap: 5px;
-        padding: 0 6px;
+        grid-template-columns: repeat(2, 1fr); /* Maintain two-column layout */
+        gap: 8px;
+        padding: 0 5px;
     }
         
     .footer-content {

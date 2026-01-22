@@ -228,11 +228,15 @@
     font-size: 16px;
     outline: none;
     transition: all 0.3s ease;
+    background-color: #f5f5f5; /* dark white background */
+    color: #666; /* gray text */
 }
 
 .search-box-large input:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(41, 98, 255, 0.2);
+    background-color: #f5f5f5; /* maintain dark white background on focus */
+    color: #666; /* maintain gray text on focus */
 }
 
 .explore-now-btn {
@@ -436,6 +440,8 @@
         font-size: 18px;
         min-width: 0;
         /* Allows flex item to shrink below content size */
+        background-color: #f5f5f5; /* maintain dark white background on mobile */
+        color: #666; /* maintain gray text on mobile */
     }
 
     .search-box-large .btn-primary {
@@ -519,8 +525,8 @@
     }
 
     .search-box-large input {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(245, 245, 245, 0.9); /* maintain dark white background in dark mode */
         border-color: rgba(255, 255, 255, 0.1);
-        color: white;
+        color: #666; /* maintain gray text in dark mode */
     }
 }

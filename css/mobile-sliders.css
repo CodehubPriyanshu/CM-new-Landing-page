@@ -1,0 +1,110 @@
+/* mobile-sliders.css - Mobile slider styles for specific sections */
+
+/* Only apply on mobile devices */
+@media (max-width: 768px) {
+    /* Base slider container styles - Perfect carousel layout */
+    .top-colleges .colleges-slider,
+    .student-choice-colleges .student-choice-grid,
+    .placement-verified-colleges .placement-verified-grid,
+    .blogs-section .blogs-grid,
+    .exams .exams-grid {
+        display: flex !important;
+        overflow: visible !important;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        gap: 0 !important;
+        padding: 10px 5vw !important;
+        cursor: grab;
+        user-select: none;
+        touch-action: pan-y;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    /* Active dragging state */
+    .top-colleges .colleges-slider:active,
+    .student-choice-colleges .student-choice-grid:active,
+    .placement-verified-colleges .placement-verified-grid:active,
+    .blogs-section .blogs-grid:active,
+    .exams .exams-grid:active {
+        cursor: grabbing;
+    }
+
+    /* Individual card styles for carousel - Perfect single card visibility */
+    .top-colleges .college-card,
+    .student-choice-colleges .college-card,
+    .placement-verified-colleges .college-card,
+    .blogs-section .blog-card,
+    .exams .exam-card {
+        min-width: 90vw !important;
+        width: 90vw !important;
+        margin: 0 2.5vw !important;
+        flex-shrink: 0 !important;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        box-sizing: border-box !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+        transform-origin: center center !important;
+        background-color: white !important;
+        border: 1px solid #e0e0e0 !important;
+    }
+
+    /* Current card highlight effect */
+    .top-colleges .college-card.active,
+    .student-choice-colleges .college-card.active,
+    .placement-verified-colleges .college-card.active,
+    .blogs-section .blog-card.active,
+    .exams .exam-card.active {
+        transform: scale(1.02) !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+        z-index: 10 !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    @media (max-width: 768px) {
+        .college-card,
+        .blog-card,
+        .exam-card {
+            border: 2px solid currentColor !important;
+        }
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    @media (max-width: 768px) {
+        .top-colleges .college-card,
+        .student-choice-colleges .college-card,
+        .placement-verified-colleges .college-card,
+        .blogs-section .blog-card,
+        .exams .exam-card {
+            transition: none !important;
+        }
+        
+        .top-colleges .colleges-slider,
+        .student-choice-colleges .student-choice-grid,
+        .placement-verified-colleges .placement-verified-grid,
+        .blogs-section .blogs-grid,
+        .exams .exams-grid {
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    @media (max-width: 768px) {
+        .college-card,
+        .blog-card,
+        .exam-card {
+            background: white !important;
+            border-color: #e0e0e0 !important;
+            color: #333 !important;
+        }
+    }
+}

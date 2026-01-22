@@ -24,6 +24,27 @@
     letter-spacing: 0.5px;
 }
 
+/* Specific badge positioning for student choice colleges */
+.student-choice-colleges .college-badge {
+    z-index: 4;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.student-choice-colleges .college-badge.student-choice {
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
 .college-badge.popular {
     background: var(--success-color);
     color: white;
@@ -49,6 +70,29 @@
     margin: -20px -20px 12px -20px;
     width: calc(100% + 40px);
     background-color: #f8f9fa;
+}
+
+.student-choice-colleges .college-card .college-image {
+    margin: -20px -20px 12px -20px !important;
+    width: calc(100% + 40px) !important;
+    background-color: #f8f9fa;
+}
+
+.student-choice-colleges .college-card .college-image img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block !important;
+    background-color: #f8f9fa;
+    opacity: 1 !important;
+    transition: none !important;
+    min-height: 100px;
+}
+
+/* Override carousel CSS opacity settings */
+.student-choice-colleges .college-card .college-image img,
+.placement-verified-colleges .college-card .college-image img {
+    opacity: 1 !important;
 }
 
 .college-image img {
@@ -112,6 +156,20 @@
     height: 100%;
     min-height: 350px;
     padding: 20px;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    overflow: visible;
+}
+
+.student-choice-colleges .college-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Ensure college image container has proper positioning */
+.student-choice-colleges .college-card .college-image {
+    position: relative;
+    overflow: visible;
 }
 
 /* Adjust college header spacing */

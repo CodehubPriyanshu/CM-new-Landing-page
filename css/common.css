@@ -45,6 +45,25 @@ img, video, iframe {
     height: auto;
 }
 
+/* Fallback for images that fail to load */
+img {
+    background-color: #f8f9fa;
+    object-fit: cover;
+}
+
+img[alt*="college"], img[alt*="College"], .college-image img {
+    min-height: 100px;
+    background-color: #f8f9fa;
+}
+
+/* Override carousel styles for college cards specifically */
+.student-choice-colleges .college-card .college-image img,
+.placement-verified-colleges .college-card .college-image img {
+    opacity: 1 !important;
+    display: block !important;
+    transition: none !important;
+}
+
 /* Prevent horizontal scrolling */
 .container {
     max-width: 100vw;
