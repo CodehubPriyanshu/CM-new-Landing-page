@@ -295,33 +295,120 @@
     }
 }
 
+/* Mobile-specific single image slider at bottom with sticky text */
 @media (max-width: 768px) {
     .hero {
         padding-top: 40px;
         min-height: 100vh;
+        flex-direction: column;
     }
 
-    .hero-content {
-        padding: 0 15px;
+    /* Hide original background images on mobile */
+    .hero-background-images {
+        display: none;
     }
 
     .hero-overlay-text {
+        display: none;
+    }
+
+    /* New single image slider at bottom */
+    .hero-image-slider {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        margin-top: 30px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        background: #f8f9fa;
+    }
+
+    .hero-image-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-single-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .hero-single-image.active {
+        opacity: 1;
+        z-index: 2;
+    }
+
+    /* Sticky college name overlay */
+    .hero-college-name {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        backdrop-filter: blur(8px);
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        white-space: nowrap;
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .hero-single-image.active + .hero-college-name,
+    .hero-college-name.active {
+        opacity: 1;
+    }
+
+    .hero-content {
+        padding: 0 20px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    /* Pagination dots */
+    .hero-slider-dots {
+        position: absolute;
         bottom: 15px;
-        right: 15px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        z-index: 10;
     }
 
-    .overlay-text {
-        max-width: 250px;
-        font-size: 14px;
-        padding: 10px 14px;
+    .hero-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        transition: all 0.3s ease;
+        cursor: pointer;
     }
 
-    .hero-title {
-        font-size: 42px;
-    }
-
-    .hero-subtitle {
-        font-size: 18px;
+    .hero-dot.active {
+        background: white;
+        border-color: white;
+        transform: scale(1.2);
     }
 }
 
@@ -331,19 +418,25 @@
         padding-top: 30px;
     }
 
+    .hero-image-slider {
+        height: 180px;
+        margin-top: 25px;
+        border-radius: 10px;
+    }
+
+    .hero-college-name {
+        font-size: 14px;
+        padding: 10px 16px;
+        max-width: 85%;
+    }
+
     .hero-content {
-        padding: 0 10px;
+        padding: 0 15px;
+        margin-bottom: 20px;
     }
 
-    .hero-overlay-text {
-        bottom: 10px;
-        right: 10px;
-    }
-
-    .overlay-text {
-        max-width: 200px;
-        font-size: 12px;
-        padding: 8px 12px;
+    .hero-slider-dots {
+        bottom: 12px;
     }
 
     .hero-title {
@@ -352,6 +445,7 @@
 
     .hero-subtitle {
         font-size: 14px;
+        margin-bottom: 25px;
     }
 
     .search-box-large {
